@@ -742,6 +742,361 @@
     line-height: 1.7;
   }
 
+  .guarantee p strong { color: var(--gold); font-weight: 600; }
+
+  /* ========== BOOK PREVIEW ========== */
+  .preview {
+    background: linear-gradient(180deg, var(--paper) 0%, #F4EFE3 100%);
+    padding: 120px 6vw;
+    border-top: 1px solid var(--line-dark);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .preview::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.06) 0%, transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(10, 31, 68, 0.04) 0%, transparent 40%);
+    pointer-events: none;
+  }
+
+  .preview-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .preview-header {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+
+  /* Single large book page */
+  .preview-page-large {
+    background: #FDFBF5;
+    background-image:
+      linear-gradient(180deg, rgba(212, 175, 55, 0.02) 0%, transparent 8%),
+      linear-gradient(0deg, rgba(10, 31, 68, 0.015) 0%, transparent 8%);
+    border: 1px solid rgba(10, 31, 68, 0.08);
+    box-shadow:
+      0 1px 1px rgba(10, 31, 68, 0.04),
+      0 4px 8px rgba(10, 31, 68, 0.06),
+      0 24px 48px rgba(10, 31, 68, 0.10),
+      0 48px 96px rgba(10, 31, 68, 0.06),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+    position: relative;
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    max-width: 880px;
+    margin: 0 auto;
+  }
+
+  .preview-page-large::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 1px;
+    background: linear-gradient(180deg,
+      transparent 0%,
+      rgba(10, 31, 68, 0.1) 15%,
+      rgba(10, 31, 68, 0.1) 85%,
+      transparent 100%);
+    box-shadow: 1px 0 0 rgba(255, 255, 255, 0.8);
+  }
+
+  .preview-page-large:hover {
+    transform: translateY(-4px);
+  }
+
+  .preview-page-content {
+    padding: 56px 64px 48px;
+  }
+
+  .preview-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(10, 31, 68, 0.5);
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(10, 31, 68, 0.12);
+    margin-bottom: 36px;
+  }
+  .preview-page-header .module-tag { color: var(--gold); letter-spacing: 0.18em; }
+
+  /* LOS hero block */
+  .preview-los-hero {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 28px;
+    align-items: center;
+    margin-bottom: 36px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid rgba(10, 31, 68, 0.08);
+  }
+
+  .preview-los-badge {
+    background: var(--navy);
+    color: var(--cream);
+    width: 80px;
+    text-align: center;
+    padding: 16px 0;
+    flex-shrink: 0;
+  }
+  .preview-los-badge-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+  .preview-los-badge-num {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  .preview-los-text {
+    font-family: 'DM Sans', sans-serif;
+  }
+  .preview-los-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .preview-los-content {
+    font-size: 14px;
+    color: rgba(10, 31, 68, 0.8);
+    line-height: 1.55;
+  }
+
+  .preview-main-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 600;
+    color: var(--navy);
+    line-height: 1.05;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+  }
+  .preview-main-title .italic { font-style: italic; color: var(--navy-light); font-weight: 500; }
+
+  .preview-main-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: rgba(10, 31, 68, 0.55);
+    margin-bottom: 32px;
+    letter-spacing: 0.05em;
+    font-style: italic;
+  }
+
+  .preview-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 8px;
+  }
+
+  .preview-col h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 12px;
+    line-height: 1.25;
+  }
+
+  .preview-col p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: rgba(10, 31, 68, 0.78);
+    line-height: 1.65;
+    margin-bottom: 14px;
+  }
+  .preview-col p strong { color: var(--navy); font-weight: 600; }
+  .preview-col p em { color: var(--gold); font-style: normal; font-weight: 600; }
+
+  .preview-formula-large {
+    background: linear-gradient(180deg, #FAF5E6 0%, #F4ECD3 100%);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    padding: 20px 24px;
+    margin: 24px 0;
+    position: relative;
+  }
+  .preview-formula-large::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--gold);
+  }
+  .preview-formula-large-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--navy);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+  .preview-formula-large-body {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: var(--navy);
+    line-height: 1.7;
+    font-weight: 500;
+  }
+
+  .preview-example {
+    background: rgba(10, 31, 68, 0.03);
+    border-left: 3px solid var(--navy);
+    padding: 24px 28px;
+    margin: 24px 0;
+  }
+  .preview-example-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--navy-light);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+  .preview-example-title {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 19px;
+    color: var(--navy);
+    margin-bottom: 12px;
+  }
+  .preview-example-text {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: rgba(10, 31, 68, 0.78);
+    line-height: 1.65;
+  }
+
+  .preview-calc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    margin: 24px 0;
+    border: 1px solid rgba(10, 31, 68, 0.12);
+  }
+
+  .preview-calc-cell {
+    padding: 24px;
+    position: relative;
+  }
+  .preview-calc-cell:first-child {
+    border-right: 1px solid rgba(10, 31, 68, 0.12);
+  }
+  .preview-calc-cell.highlight {
+    background: linear-gradient(180deg, rgba(212, 175, 55, 0.06) 0%, rgba(212, 175, 55, 0.02) 100%);
+  }
+
+  .preview-calc-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(10, 31, 68, 0.55);
+    margin-bottom: 10px;
+  }
+  .preview-calc-formula {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: rgba(10, 31, 68, 0.7);
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+  .preview-calc-result {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 6px;
+    letter-spacing: -0.02em;
+  }
+  .preview-calc-result.wrong { color: rgba(220, 80, 60, 0.85); }
+  .preview-calc-result.right { color: var(--gold); }
+
+  .preview-calc-verdict {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: rgba(10, 31, 68, 0.65);
+    font-style: italic;
+  }
+
+  .preview-aha {
+    background: var(--navy);
+    color: var(--cream);
+    padding: 28px 32px;
+    margin-top: 32px;
+    position: relative;
+    border-left: 4px solid var(--gold);
+  }
+  .preview-aha-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .preview-aha-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    line-height: 1.35;
+    color: var(--cream);
+    font-weight: 400;
+  }
+  .preview-aha-text .italic { font-style: italic; color: var(--gold-light); font-weight: 500; }
+
+  .preview-page-footer-large {
+    margin-top: 36px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(10, 31, 68, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: rgba(10, 31, 68, 0.4);
+    letter-spacing: 0.15em;
+  }
+  .preview-page-num-large {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: rgba(10, 31, 68, 0.55);
+  }
+
+  .preview-footer-note {
+    text-align: center;
+    margin-top: 56px;
+    font-size: 14px;
+    color: var(--muted-dark);
+    font-style: italic;
+    line-height: 1.6;
+  }
+  .preview-footer-note strong { color: var(--navy); font-weight: 600; font-style: normal; }
+
   /* ========== FAQ ========== */
   .faq {
     background: var(--cream);
@@ -887,6 +1242,16 @@
     .proof-inner { grid-template-columns: 1fr; gap: 48px; }
     .proof-quote { font-size: 26px; }
     .delivery-steps { grid-template-columns: 1fr; gap: 40px; }
+    .preview-pages { grid-template-columns: 1fr; gap: 32px; }
+    .preview-page { aspect-ratio: auto; }
+    .preview-page-content { padding: 32px 28px 28px; }
+    .preview-los-hero { grid-template-columns: 1fr; gap: 16px; }
+    .preview-body { grid-template-columns: 1fr; gap: 24px; }
+    .preview-calc-grid { grid-template-columns: 1fr; }
+    .preview-calc-cell:first-child { border-right: none; border-bottom: 1px solid rgba(10, 31, 68, 0.12); }
+    .preview-main-title { font-size: 32px; }
+    .preview-aha { padding: 24px 24px; }
+    .preview-aha-text { font-size: 18px; }
     .section { padding: 80px 6vw; }
     .pricing-card { padding: 36px 24px; }
     .hero-meta { gap: 32px; }
@@ -916,7 +1281,7 @@
       <span class="underline">анх удаа бий боллоо.</span>
     </h1>
     <p class="hero-lead">
-      Бидний зүгээс бэлэг болгож CFA Level 1 Quantitative Methods сэдвийг танд өгсөн билээ. Таалагдсан гэж найдаж байна. Үлдсэн 9 сэдвийг маш олон хүн асуусан тул бид бүхэн бэлэн болгож танд хүргэхэд бэлэн боллоо.
+      Бидний зүгээс CFA шалгалтанд бэлдэж буй Монгол ахан дүүсдээ зориулан CFA-ийн бүрэн номыг монгол хэл дээрээ бэлдэж, таны гар дээр хүргэхэд бэлэн боллоо.
     </p>
     <div class="hero-cta-row">
       <a href="#topics" class="btn-primary">Ямар сэдэв байгаа</a>
@@ -926,7 +1291,7 @@
     <div class="hero-meta">
       <div class="hero-meta-item">
         Багтсан
-        <strong>9 <span class="accent">сэдэв</span></strong>
+        <strong>10 <span class="accent">сэдэв</span></strong>
       </div>
       <div class="hero-meta-item">
         Нийт агуулга
@@ -945,18 +1310,20 @@
   <div class="section-eyebrow">Яагаад одоо</div>
   <h2 class="section-title">Монгол хэл дээр<br>CFA-ийн ном <span class="italic">байгаагүй.</span></h2>
   <p class="section-lead">
-    CFA-ийн curriculum 3000 гаруй хуудас, мэргэжлийн англи хэлээр бичигдсэн. Эх хэлээрээ ойлгож, тогтоох сонголт өнөөг хүртэл байсангүй. Энэ ажил Quant-ийн 11 module-аас эхэлсэн ба үлдсэн 9 сэдэв одоо бэлэн боллоо.
+    CFA-ийн curriculum 3000 гаруй хуудас, мэргэжлийн англи хэлээр бичигдсэн. Эх хэлээрээ ойлгож, тогтоох сонголт өнөөг хүртэл байсангүй. Ийнхүү CFA шалгалтаа амжилттай давж цол эзэмшсэн мэргэжилтнүүд бид та бүгдэдээ эх хэл дээрээ суралцах боломжийг нээж байна.
   </p>
 
   <div class="problem-grid">
     <div>
       <div class="problem-quote">
-        Discounting гэдгийг<br>
-        "хямдруулалт" гэж<br>
-        <span class="italic">орчуулсан минут</span><br>
-        утга нь алга болно.
+        Эх хэл дээрээ болон<br>
+        англи хэл дээр<br>
+        хослуулан сурах нь<br>
+        ой тогтоолт, сурах<br>
+        <span class="italic">үйл явцыг 2-3 дахин</span><br>
+        хурдасгадаг.
       </div>
-      <div class="problem-quote-attribution">— CFA нэр томъёоны асуудал</div>
+      <div class="problem-quote-attribution">— Сурах үр дүнтэй арга</div>
     </div>
 
     <div class="problem-detail">
@@ -965,10 +1332,10 @@
         CFA-ийн curriculum техникийн өндөр түвшний англи хэлээр бичигдсэн. <strong>Discounting</strong>, <strong>duration</strong>, <strong>covariance</strong>, <strong>amortization</strong> — эдгээрийг шууд орчуулах нь утгыг гажуудуулдаг.
       </p>
       <p>
-        Quant-ийн module-ыг та хараад мэдэж байгаа: тэр номонд <strong>эх хэлний логикоор</strong> бичсэн, гэхдээ техникийн нэр томъёог англиар хадгалсан. Энэ нь танд хоёр давуу талыг өгдөг — англи curriculum-аа уншихдаа ойлголт нь тогтсон, шалгалт өгөхдөө ч англи хэллэг танил байна.
+        Манай ном <strong>эх хэлний логикоор</strong> бичигдсэн, гэхдээ техникийн нэр томъёог англиар хадгалсан. Энэ нь танд хоёр давуу талыг өгдөг — англи curriculum-аа уншихдаа ойлголт нь тогтсон, шалгалт өгөхдөө ч англи хэллэг танил байна.
       </p>
       <p>
-        Үлдсэн 9 сэдэв ч мөн ийм зарчмаар бичигдсэн.
+        10 сэдэв бүхэлдээ ийм зарчмаар бичигдсэн.
       </p>
     </div>
   </div>
@@ -977,14 +1344,22 @@
 <!-- WHAT'S INSIDE -->
 <section class="section inside" id="topics">
   <div class="section-eyebrow" style="color: var(--gold);">Багтах</div>
-  <h2 class="section-title">9 сэдэв. <span class="italic">Бүгд нэг дор.</span></h2>
+  <h2 class="section-title">10 сэдэв. <span class="italic">Бүгд нэг дор.</span></h2>
   <p class="section-lead">
-    CFA Level I-ийн curriculum-ын үлдсэн бүх үндсэн сэдвүүд, 1000 гаруй хуудас, нэг файл болж танд илгээгдэнэ. Аль сэдвээс эхлэх нь таны сонголт.
+    CFA Level I-ийн curriculum-ын бүх үндсэн сэдвүүд, 1000 гаруй хуудас, нэг файл болж танд илгээгдэнэ. Аль сэдвээс эхлэх нь таны сонголт.
   </p>
 
   <div class="topics-grid">
     <div class="topic-card">
       <div class="topic-num">01</div>
+      <div class="topic-title">Quantitative Methods</div>
+      <div class="topic-mn">Тоон арга</div>
+      <div class="topic-desc">Хүү, өгөөж, магадлал, гипотезийн тест, регресс. Бусад сэдвийн математик суурь.</div>
+      <div class="topic-meta">~ 300 хуудас</div>
+    </div>
+
+    <div class="topic-card">
+      <div class="topic-num">02</div>
       <div class="topic-title">Ethical & Professional Standards</div>
       <div class="topic-mn">Ёс зүй ба Мэргэжлийн Стандарт</div>
       <div class="topic-desc">CFA Institute-ийн Code & Standards. Шалгалтын 15-20% энэ сэдвээс ирдэг — олон хүнийг унагадаг.</div>
@@ -992,7 +1367,7 @@
     </div>
 
     <div class="topic-card">
-      <div class="topic-num">02</div>
+      <div class="topic-num">03</div>
       <div class="topic-title">Economics</div>
       <div class="topic-mn">Эдийн Засаг</div>
       <div class="topic-desc">Микро, макро, олон улсын худалдаа, валютын ханш. Их концептийн материал, эх хэлээрээ илүү ойлгомжтой.</div>
@@ -1000,7 +1375,7 @@
     </div>
 
     <div class="topic-card">
-      <div class="topic-num">03</div>
+      <div class="topic-num">04</div>
       <div class="topic-title">Financial Statement Analysis</div>
       <div class="topic-mn">Санхүүгийн Тайлангийн Шинжилгээ</div>
       <div class="topic-desc">Хамгийн том сэдэв. Балансын тайлан, ашиг алдагдал, мөнгөн гүйлгээ — IFRS vs GAAP ялгаатай.</div>
@@ -1008,7 +1383,7 @@
     </div>
 
     <div class="topic-card">
-      <div class="topic-num">04</div>
+      <div class="topic-num">05</div>
       <div class="topic-title">Corporate Issuers</div>
       <div class="topic-mn">Корпорацийн Санхүү</div>
       <div class="topic-desc">Capital structure, WACC, корпорацийн засаглал, ESG. Тооцооллын хэсэг түлхүү.</div>
@@ -1016,7 +1391,7 @@
     </div>
 
     <div class="topic-card">
-      <div class="topic-num">05</div>
+      <div class="topic-num">06</div>
       <div class="topic-title">Equity Investments</div>
       <div class="topic-mn">Хувьцааны Хөрөнгө Оруулалт</div>
       <div class="topic-desc">DDM, FCFE, multiples-аар үнэлэх аргууд. Practical, шалгалтанд их асуугддаг.</div>
@@ -1024,7 +1399,7 @@
     </div>
 
     <div class="topic-card">
-      <div class="topic-num">06</div>
+      <div class="topic-num">07</div>
       <div class="topic-title">Fixed Income</div>
       <div class="topic-mn">Бонд ба Тогтмол Орлого</div>
       <div class="topic-desc">Duration, convexity, yield curve, кредит эрсдэл. Quant-той ихээхэн уялдаатай.</div>
@@ -1032,7 +1407,7 @@
     </div>
 
     <div class="topic-card">
-      <div class="topic-num">07</div>
+      <div class="topic-num">08</div>
       <div class="topic-title">Derivatives</div>
       <div class="topic-mn">Дериватив (Хэлцэл бүтээгдэхүүн)</div>
       <div class="topic-desc">Forwards, futures, options, swaps. No-arbitrage pricing зарчим.</div>
@@ -1040,7 +1415,7 @@
     </div>
 
     <div class="topic-card">
-      <div class="topic-num">08</div>
+      <div class="topic-num">09</div>
       <div class="topic-title">Alternative Investments</div>
       <div class="topic-mn">Альтернатив Хөрөнгө Оруулалт</div>
       <div class="topic-desc">Hedge funds, private equity, real estate, commodities. Хамгийн жижиг weight, өндөр сонирхолтой.</div>
@@ -1048,7 +1423,7 @@
     </div>
 
     <div class="topic-card">
-      <div class="topic-num">09</div>
+      <div class="topic-num">10</div>
       <div class="topic-title">Portfolio Management</div>
       <div class="topic-mn">Багц Удирдлага</div>
       <div class="topic-desc">MPT, CAPM, IPS, эрсдэл-өгөөжийн харьцаа. Level II, III-ын суурь.</div>
@@ -1057,23 +1432,162 @@
   </div>
 </section>
 
+<!-- BOOK PREVIEW -->
+<section class="preview">
+  <div class="preview-inner">
+    <div class="preview-header">
+      <div class="section-eyebrow" style="justify-content: center;">Номны хуудаснаас</div>
+      <h2 class="section-title" style="margin: 0 auto 24px; text-align: center;">Дотор нь <span class="italic">юу байна вэ.</span></h2>
+      <p class="section-lead" style="margin: 0 auto; text-align: center;">
+        Нэг бодит хуудас, нэг бодит сэдэв. Шалгалтанд гардаг боловч хувийн хөрөнгө оруулалтад мөн адил шууд хэрэгтэй ойлголт.
+      </p>
+    </div>
+
+    <div class="preview-page-large">
+      <div class="preview-page-content">
+
+        <!-- Page header -->
+        <div class="preview-page-header">
+          <span class="module-tag">CFA Level I · Volume 1 · Module 1</span>
+          <span>Хүү ба өгөөж</span>
+        </div>
+
+        <!-- LOS hero -->
+        <div class="preview-los-hero">
+          <div class="preview-los-badge">
+            <div class="preview-los-badge-label">LOS</div>
+            <div class="preview-los-badge-num">2</div>
+          </div>
+          <div class="preview-los-text">
+            <div class="preview-los-eyebrow">Сурах үр дүн · 2В</div>
+            <div class="preview-los-content">
+              Хугацааны туршид өгөөжийг хэмжих янз бүрийн аргыг тооцоолж, тайлбарлаж, тэдгээрийн зохистой хэрэглээг тодорхойлох.
+            </div>
+          </div>
+        </div>
+
+        <!-- Main title -->
+        <h2 class="preview-main-title">
+          Арифметик дундаж<br>
+          <span class="italic">эсвэл геометр дундаж?</span>
+        </h2>
+        <div class="preview-main-subtitle">Arithmetic vs Geometric Mean Return</div>
+
+        <!-- Two-column body -->
+        <div class="preview-body">
+          <div class="preview-col">
+            <h4>Арифметик дундаж — энгийн.</h4>
+            <p>
+              Хэд хэдэн хугацааны өгөөжийг нэгтгэх хамгийн энгийн арга нь арифметик дундаж — өгөөжүүдийн нийлбэрийг тэдний тоонд хуваах.
+            </p>
+            <p>
+              Энэ нь нэг үеийн дундаж өгөөжийг үнэлэхэд тохиромжтой. <strong>Гэхдээ багцын бодит өсөлтийг хэт том харуулах хандлагатай.</strong>
+            </p>
+          </div>
+
+          <div class="preview-col">
+            <h4>Геометр дундаж — компаунд.</h4>
+            <p>
+              Геометр дундаж нь өгөөжүүдийг хооронд нь компаунд хийдэг — өмнөх жилийн үлдэгдэл нь дараагийн жилийн суурь болно.
+            </p>
+            <p>
+              Олон үеийн <em>бодит</em> өсөлтийг хэмжихэд зөвхөн геометр дундаж л зөв хариулт өгдөг.
+            </p>
+          </div>
+        </div>
+
+        <!-- Formulas -->
+        <div class="preview-formula-large">
+          <div class="preview-formula-large-label">Хоёр томьёо</div>
+          <div class="preview-formula-large-body">
+            R̄  = (R₁ + R₂ + ... + Rₜ) / T<br>
+            R̄_G = [(1+R₁) × (1+R₂) × ... × (1+Rₜ)]^(1/T) − 1
+          </div>
+        </div>
+
+        <!-- Example -->
+        <div class="preview-example">
+          <div class="preview-example-label">Жишээ</div>
+          <div class="preview-example-title">Гурван жилийн өгөөж: −50%, +35%, +27%.</div>
+          <div class="preview-example-text">
+            Жилийн дундаж өгөөж хэд вэ? Хоёр аргаар тооцож, аль нь зөв болохыг шалгая.
+          </div>
+        </div>
+
+        <!-- Calculation comparison -->
+        <div class="preview-calc-grid">
+          <div class="preview-calc-cell">
+            <div class="preview-calc-label">Арифметик дундаж</div>
+            <div class="preview-calc-formula">(−50 + 35 + 27) / 3</div>
+            <div class="preview-calc-result wrong">+4.0%</div>
+            <div class="preview-calc-verdict">Ашигтай мэт харагдаж байна.</div>
+          </div>
+          <div class="preview-calc-cell highlight">
+            <div class="preview-calc-label">Геометр дундаж</div>
+            <div class="preview-calc-formula">[0.50 × 1.35 × 1.27]^(1/3) − 1</div>
+            <div class="preview-calc-result right">−5.0%</div>
+            <div class="preview-calc-verdict">Бодитоор алдагдалтай.</div>
+          </div>
+        </div>
+
+        <!-- Verification -->
+        <div class="preview-formula-large">
+          <div class="preview-formula-large-label">Тоо нотолно</div>
+          <div class="preview-formula-large-body">
+            1.00 EUR × 0.50 × 1.35 × 1.27 = <strong style="color: var(--gold);">0.8573 EUR</strong><br>
+            <br>
+            Арифметик (+4%) хэлдэг: 1.00 × 1.04³ = 1.1249 EUR — <em style="color: rgba(220,80,60,0.85); font-style: normal;">буруу</em><br>
+            Геометр (−5%) хэлдэг: 1.00 × 0.95³ = 0.8574 EUR — <em style="color: var(--gold); font-style: normal;">зөв</em>
+          </div>
+        </div>
+
+        <!-- Aha moment -->
+        <div class="preview-aha">
+          <div class="preview-aha-label">Гол сургамж</div>
+          <div class="preview-aha-text">
+            Эхний жилд зах зээлийн үнэ унасан хувьцаа дараа жил <span class="italic">илүү их</span> өсөлт шаарддаг.<br>
+            <span style="font-size: 14px; opacity: 0.7; font-family: 'DM Sans', sans-serif;">−50% алдагдлаас гарахад +100% хэрэгтэй. Үүнийг геометр дундаж илүү сайн харуулдаг.</span>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="preview-page-footer-large">
+          <span>LM 1 · Хүүгийн түвшин ба өгөөж</span>
+          <span class="preview-page-num-large">12</span>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="preview-footer-note">
+      Нэг хуудас. Нэг сурах үр дүн.<br>
+      <strong>Бүрэн ном дотор 1000 гаруй ийм хуудас.</strong>
+    </div>
+  </div>
+</section>
+
 <!-- PROOF -->
 <section class="proof">
   <div class="proof-inner">
     <div>
-      <div class="section-eyebrow">Та аль хэдийн харсан</div>
+      <div class="section-eyebrow">Яагаад энэ ном вэ</div>
       <div class="proof-quote">
-        "Энэ ном өөр түвшинд бичигдсэн.<br>
-        <span class="italic">Англи хэлэндээ муу хүн ч ойлгох боломжтой."</span>
+        "Энэхүү ном нь<br>
+        энгийн үгээр<br>
+        <span class="italic">ойлгомжтой</span><br>
+        бичигдсэн."
       </div>
     </div>
     <div class="proof-detail">
-      <h3>Quant-ийн module нь жишээ.</h3>
+      <h3>Англи хэл саад болохгүй.</h3>
       <p>
-        Танд <strong>Quant-ийн 11 module таалагдсан</strong> гэж найдаж байна. Тэр загвар, тэр стандарт, тэр л тэнцвэр (эх хэлний логик + англи терминологи) үлдсэн 9 сэдэвт шууд тусгагдсан.
+        CFA-ийн англи curriculum нь нягтаршилтай, мэргэжлийн нэр томъёоор дүүрэн. Манай ном <strong>энгийн үгээр ойлгомжтой</strong> бичигдсэн — гэхдээ техникийн нэр томъёог англиар хадгалж шалгалтанд бэлтгэлд саад үүсгэхгүй.
       </p>
       <p>
-        Хэрвээ ном гарт орсны дараа Quant-ийн чанартай тэнцэхгүй гэж үзвэл 7 хоногийн дотор бүрэн буцаалт авна.
+        Concept нь эх хэлээр тогтоно, англи хэллэг нь танил болно — энэ хослол нь <strong>ой тогтоох хурдыг 2-3 дахин нэмэгдүүлдэг</strong>.
+      </p>
+      <p>
+        Ном таны гар дээр очсоноос хойш 7 хоногийн дотор сэтгэл хангалуун бус байвал бүрэн буцаалт авна.
       </p>
     </div>
   </div>
@@ -1101,7 +1615,7 @@
       <div class="step">
         <div class="step-num">iii.</div>
         <div class="step-title">Ном хүлээн авах</div>
-        <div class="step-desc">9 сэдэв, 1000 гаруй хуудас, нэг PDF файлаар инбокст ирнэ.</div>
+        <div class="step-desc">10 сэдэв, 1000 гаруй хуудас, нэг PDF файлаар инбокст ирнэ.</div>
         <div class="step-time">Зэрэг</div>
       </div>
     </div>
@@ -1114,22 +1628,22 @@
     <div class="pricing-eyebrow">Үнийн санал</div>
     <h2 class="pricing-headline">
       4 сарын 30-аас өмнө бүртгүүлсэн хүмүүст<br>
-      <span class="italic">100,000₮ хямдарлаа.</span>
+      <span class="italic">50% хямдарлаа.</span>
     </h2>
 
     <div class="price-comparison">
-      <div class="price-old-big">299,000<span class="currency">₮</span></div>
+      <div class="price-old-big">398,000<span class="currency">₮</span></div>
       <div class="price-arrow">→</div>
       <div class="price-new-big">199,000<span class="currency">₮</span></div>
     </div>
 
     <div class="savings-badge">
-      Хэмнэлт <strong>100,000₮</strong>
+      Хэмнэлт <strong>199,000₮</strong>
     </div>
 
     <div class="pricing-card">
       <div class="pricing-row">
-        <span class="label">9 сэдэв, 1000+ хуудас</span>
+        <span class="label">10 сэдэв, 1000+ хуудас</span>
         <span class="value">PDF</span>
       </div>
       <div class="pricing-row">
@@ -1150,7 +1664,7 @@
     <div class="pricing-cta">
       <a href="#checkout" class="btn-primary">Одоо худалдаж авах</a>
     </div>
-    <div class="pricing-deadline">5/5-ний дараа · 299,000₮ руу буцна</div>
+    <div class="pricing-deadline">5/5-ний дараа · 398,000₮ руу буцна</div>
   </div>
 </section>
 
@@ -1160,7 +1674,7 @@
     <div class="guarantee-icon">⚜</div>
     <h3>7 хоногийн <span class="italic">буцаалтын баталгаа.</span></h3>
     <p>
-      Ном гарт орсноос хойш 7 хоногийн дотор та чанарын талаар сэтгэл хангалуун бус байвал бүрэн буцаалт авна. Энэ нь миний эрсдэл, таных биш.
+      Ном таны гар дээр очсоноос хойш 7 хоногийн дотор та чанарын талаар сэтгэл хангалуун бус байвал бүрэн буцаалт авна. Үүгээрээ бид танд <strong>100%-ийн баталгаа</strong> өгч байна.
     </p>
   </div>
 </section>
@@ -1173,7 +1687,7 @@
 
     <details class="faq-item">
       <summary class="faq-q">Хэзээ хүлээн авах вэ?</summary>
-      <div class="faq-a">Гүйлгээний баримт хүлээн авмагц 48 цагийн дотор танд имэйлээр PDF илгээгдэнэ. 9 сэдэв нэг файлд багтсан.</div>
+      <div class="faq-a">Гүйлгээний баримт хүлээн авмагц 48 цагийн дотор танд имэйлээр PDF илгээгдэнэ. 10 сэдэв нэг файлд багтсан.</div>
     </details>
 
     <details class="faq-item">
@@ -1182,16 +1696,16 @@
         Болно. <strong>Нэг сэдвийг тусад нь 40,000₮.</strong> Гэхдээ бүгдийг нэг дор авах нь хамаагүй ашигтай:
         <div class="faq-pricing-table">
           <div class="faq-pricing-row">
-            <span>9 сэдэв тус тусад нь</span>
-            <span>9 × 40,000 = 360,000₮</span>
+            <span>10 сэдэв тус тусад нь</span>
+            <span>10 × 40,000 = 400,000₮</span>
           </div>
           <div class="faq-pricing-row">
-            <span>9 сэдэв нэг дор (тусгай үнэ)</span>
+            <span>10 сэдэв нэг дор (тусгай үнэ)</span>
             <span>199,000₮</span>
           </div>
           <div class="faq-pricing-row">
             <span>Хэмнэлт</span>
-            <span class="savings">161,000₮</span>
+            <span class="savings">201,000₮</span>
           </div>
         </div>
         Аль сэдвийг авахаа шийдсэн бол надтай шууд холбогдоорой.
@@ -1204,18 +1718,13 @@
     </details>
 
     <details class="faq-item">
-      <summary class="faq-q">Quant-ийн module шиг чанарын вэ?</summary>
-      <div class="faq-a">Тэр загвар, тэр стандарт. Эх хэлний логикоор бичигдсэн, гэхдээ техникийн нэр томъёог англиар хадгалсан. Quant-ийн module-ыг "юу таалагдсан, юу буддиантай" гэж сэтгэснийг үлдсэн 9 сэдэвт шууд тусгасан.</div>
-    </details>
-
-    <details class="faq-item">
       <summary class="faq-q">Энэ англи curriculum-ыг орлох уу?</summary>
       <div class="faq-a">Үгүй. CFA Institute-ийн оригинал curriculum-ыг суралцагч заавал унших ёстой. Энэ ном бол <strong>хамтран ашиглах туслах материал</strong> — англиар уншиж буй сэдвийг эх хэлээрээ ойлгож, тогтоох зорилготой.</div>
     </details>
 
     <details class="faq-item">
       <summary class="faq-q">5/5-ний дараа худалдаж авч болох уу?</summary>
-      <div class="faq-a">Болно — гэхдээ 299,000₮ үнээр. 199,000₮ тусгай үнэ нь зөвхөн <strong>4 сарын 30-аас өмнө бүртгүүлсэн хүмүүст</strong> 5/5 хүртэл хүчинтэй.</div>
+      <div class="faq-a">Болно — гэхдээ 398,000₮ үнээр. 199,000₮ тусгай үнэ нь зөвхөн <strong>4 сарын 30-аас өмнө бүртгүүлсэн хүмүүст</strong> 5/5 хүртэл хүчинтэй.</div>
     </details>
 
     <details class="faq-item">
@@ -1224,7 +1733,7 @@
     </details>
 
     <details class="faq-item">
-      <summary class="faq-q">Юу болохгүй бол яах вэ?</summary>
+      <summary class="faq-q">Надад таалагдахгүй бол яах вэ?</summary>
       <div class="faq-a">7 хоногийн дотор бүрэн буцаалт авах эрхтэй. Ямар нэг асуудал гарвал шууд надтай холбогдоорой — шуурхай шийднэ.</div>
     </details>
   </div>
@@ -1254,7 +1763,7 @@
       </div>
       <div class="bank-row">
         <span class="label">Гүйлгээний утга</span>
-        <span class="value">CFA-L1 + ИМЭЙЛ + НЭР </span>
+        <span class="value">CFA монгол ном + имэйл + нэр</span>
       </div>
       <div class="bank-row">
         <span class="label">Дүн</span>
@@ -1266,7 +1775,7 @@
       </div>
     </div>
 
-    <a href="mailto:[ИМЭЙЛ ХАЯГ]?subject=CFA%20Level%20I%20-%20Гүйлгээний%20баримт" class="btn-primary" style="background: var(--gold); color: var(--navy-deep);">Имэйлээр илгээх</a>
+    <a href="mailto:mistercfa1129@gmail.com?subject=CFA%20Level%20I%20-%20Гүйлгээний%20баримт" class="btn-primary" style="background: var(--gold); color: var(--navy-deep);">Имэйлээр илгээх</a>
 
     <p class="bank-note">
       Шилжүүлэг хийсний дараа гүйлгээний баримтын зургийг (screenshot) дээрх имэйл хаяг руу илгээгээрэй. 48 цагийн дотор танд PDF имэйлдэгдэнэ.
