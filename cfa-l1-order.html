@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CFA Level I — Монгол хэл дээр анх удаа</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0A1F44;
+    --navy-deep: #050E22;
+    --navy-light: #1A3060;
+    --gold: #D4AF37;
+    --gold-light: #F4D67A;
+    --cyan: #00E5FF;
+    --cream: #F8F4E9;
+    --paper: #FAF7EF;
+    --ink: #0A1F44;
+    --muted: rgba(248, 244, 233, 0.65);
+    --muted-dark: rgba(10, 31, 68, 0.62);
+    --line: rgba(212, 175, 55, 0.18);
+    --line-dark: rgba(10, 31, 68, 0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', -apple-system, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.55;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ========== HERO ========== */
+  .hero {
+    background: var(--navy-deep);
+    color: var(--cream);
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(0, 229, 255, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(212, 175, 55, 0.10) 0%, transparent 55%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(212, 175, 55, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(212, 175, 55, 0.04) 1px, transparent 1px);
+    background-size: 80px 80px;
+    pointer-events: none;
+  }
+
+  .nav {
+    position: relative;
+    z-index: 10;
+    padding: 24px 6vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+  }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: -0.02em;
+    color: var(--cream);
+  }
+  .logo .accent { color: var(--gold); font-style: italic; }
+
+  .nav-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .nav-meta::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: var(--cyan);
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--cyan);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* HERO CONTENT — single column, centered */
+  .hero-content {
+    position: relative;
+    z-index: 5;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 6vw;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 40px;
+    animation: fadeUp 0.8s ease-out;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 36px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: clamp(48px, 7.5vw, 96px);
+    line-height: 1.0;
+    letter-spacing: -0.025em;
+    margin-bottom: 40px;
+    max-width: 1000px;
+    animation: fadeUp 1s ease-out 0.1s both;
+  }
+  .hero h1 .italic { font-style: italic; color: var(--gold-light); font-weight: 600; }
+  .hero h1 .underline {
+    background-image: linear-gradient(transparent 65%, rgba(0, 229, 255, 0.35) 65%);
+  }
+
+  .hero-lead {
+    font-size: 21px;
+    line-height: 1.55;
+    color: var(--muted);
+    max-width: 640px;
+    margin-bottom: 56px;
+    animation: fadeUp 1s ease-out 0.25s both;
+  }
+
+  .hero-cta-row {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+    flex-wrap: wrap;
+    animation: fadeUp 1s ease-out 0.4s both;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--navy-deep);
+    padding: 20px 40px;
+    border: none;
+    border-radius: 0;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-primary::after {
+    content: '→';
+    transition: transform 0.3s;
+  }
+  .btn-primary:hover {
+    background: var(--cream);
+    color: var(--navy-deep);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(212, 175, 55, 0.3);
+  }
+  .btn-primary:hover::after { transform: translateX(4px); }
+
+  .btn-ghost {
+    color: var(--cream);
+    text-decoration: none;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(248, 244, 233, 0.4);
+    padding-bottom: 4px;
+    transition: all 0.3s;
+  }
+  .btn-ghost:hover { color: var(--gold); border-color: var(--gold); }
+
+  .hero-meta {
+    margin-top: 80px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(212, 175, 55, 0.15);
+    display: flex;
+    gap: 64px;
+    flex-wrap: wrap;
+    animation: fadeUp 1s ease-out 0.55s both;
+  }
+  .hero-meta-item {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .hero-meta-item strong {
+    display: block;
+    color: var(--cream);
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: none;
+    margin-top: 8px;
+  }
+  .hero-meta-item strong .accent { color: var(--gold); font-style: italic; }
+
+  /* ========== SECTION SHARED ========== */
+  .section {
+    padding: 120px 6vw;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .section-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .section-eyebrow::before {
+    content: '';
+    width: 28px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(34px, 4.5vw, 56px);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+    max-width: 800px;
+  }
+  .section-title .italic { font-style: italic; color: var(--navy-light); font-weight: 600; }
+
+  .section-lead {
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--muted-dark);
+    max-width: 680px;
+    margin-bottom: 56px;
+  }
+
+  /* ========== PROBLEM ========== */
+  .problem {
+    background: var(--paper);
+    border-top: 1px solid var(--line-dark);
+  }
+
+  .problem-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .problem-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 3.5vw, 40px);
+    font-weight: 400;
+    line-height: 1.25;
+    color: var(--navy);
+    letter-spacing: -0.01em;
+    padding-left: 32px;
+    border-left: 3px solid var(--gold);
+  }
+  .problem-quote .italic { font-style: italic; color: var(--navy-light); }
+  .problem-quote-attribution {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--muted-dark);
+    letter-spacing: 0.1em;
+    margin-top: 24px;
+    text-transform: uppercase;
+  }
+
+  .problem-detail h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--navy);
+    margin-bottom: 24px;
+    line-height: 1.2;
+  }
+  .problem-detail p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--muted-dark);
+    margin-bottom: 18px;
+  }
+  .problem-detail strong { color: var(--navy); font-weight: 600; }
+
+  /* ========== WHAT'S INSIDE ========== */
+  .inside {
+    background: var(--navy);
+    color: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .inside::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60%;
+    height: 100%;
+    background: radial-gradient(ellipse at top right, rgba(212, 175, 55, 0.12), transparent 60%);
+    pointer-events: none;
+  }
+
+  .inside .section-title { color: var(--cream); }
+  .inside .section-title .italic { color: var(--gold-light); }
+  .inside .section-lead { color: var(--muted); }
+
+  .topics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(212, 175, 55, 0.15);
+    margin-top: 48px;
+  }
+
+  .topic-card {
+    background: var(--navy);
+    padding: 36px 32px;
+    position: relative;
+    transition: background 0.4s;
+  }
+  .topic-card:hover { background: var(--navy-light); }
+
+  .topic-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    margin-bottom: 16px;
+  }
+
+  .topic-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+
+  .topic-mn {
+    font-size: 14px;
+    color: var(--gold-light);
+    margin-bottom: 16px;
+    font-style: italic;
+  }
+
+  .topic-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .topic-meta {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(212, 175, 55, 0.15);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* ========== PROOF ========== */
+  .proof {
+    background: var(--paper);
+    padding: 120px 6vw;
+  }
+
+  .proof-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 100px;
+    align-items: center;
+  }
+
+  .proof-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 400;
+    line-height: 1.25;
+    color: var(--navy);
+    letter-spacing: -0.01em;
+    padding-left: 32px;
+    border-left: 3px solid var(--gold);
+  }
+  .proof-quote .italic { font-style: italic; color: var(--navy-light); }
+
+  .proof-detail h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--navy);
+    margin-bottom: 24px;
+    line-height: 1.2;
+  }
+  .proof-detail p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--muted-dark);
+    margin-bottom: 18px;
+  }
+  .proof-detail strong { color: var(--navy); font-weight: 600; }
+
+  /* ========== DELIVERY ========== */
+  .delivery {
+    background: var(--cream);
+    padding: 100px 6vw;
+    border-top: 1px solid var(--line-dark);
+    border-bottom: 1px solid var(--line-dark);
+    text-align: center;
+  }
+
+  .delivery-inner { max-width: 880px; margin: 0 auto; }
+
+  .delivery-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-top: 64px;
+  }
+
+  .step {
+    text-align: center;
+    position: relative;
+  }
+
+  .step-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 56px;
+    font-weight: 400;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 16px;
+    font-style: italic;
+  }
+
+  .step-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 12px;
+  }
+
+  .step-desc {
+    font-size: 14px;
+    color: var(--muted-dark);
+    line-height: 1.6;
+  }
+
+  .step-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--cyan);
+    letter-spacing: 0.15em;
+    margin-top: 12px;
+    text-transform: uppercase;
+  }
+
+  /* ========== PRICING ========== */
+  .pricing {
+    background: var(--navy-deep);
+    color: var(--cream);
+    padding: 140px 6vw;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pricing::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.08) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .pricing-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .pricing-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .pricing-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+  .pricing-headline .italic { font-style: italic; color: var(--gold-light); }
+
+  .pricing-subhead {
+    font-size: 17px;
+    color: var(--muted);
+    margin-bottom: 56px;
+    line-height: 1.6;
+  }
+  .pricing-subhead strong { color: var(--cream); font-weight: 500; }
+
+  /* Big visceral discount display */
+  .price-comparison {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    margin: 0 auto 48px;
+    flex-wrap: wrap;
+  }
+
+  .price-old-big {
+    position: relative;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(40px, 5vw, 64px);
+    font-weight: 400;
+    color: var(--muted);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .price-old-big::after {
+    content: '';
+    position: absolute;
+    left: -8px;
+    right: -8px;
+    top: 52%;
+    height: 3px;
+    background: rgba(212, 175, 55, 0.7);
+    transform: rotate(-8deg);
+  }
+  .price-old-big .currency {
+    font-size: 0.55em;
+    color: rgba(248, 244, 233, 0.4);
+    margin-left: 4px;
+    font-weight: 400;
+  }
+
+  .price-arrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 32px;
+    color: var(--gold);
+    font-weight: 300;
+  }
+
+  .price-new-big {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(72px, 10vw, 120px);
+    font-weight: 600;
+    color: var(--gold);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    text-shadow: 0 4px 30px rgba(212, 175, 55, 0.3);
+  }
+  .price-new-big .currency {
+    font-size: 0.4em;
+    margin-left: 4px;
+    font-weight: 400;
+  }
+
+  .savings-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(0, 229, 255, 0.12);
+    border: 1px solid rgba(0, 229, 255, 0.4);
+    color: var(--cyan);
+    padding: 12px 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 56px;
+  }
+  .savings-badge strong {
+    color: var(--cyan);
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .pricing-card {
+    background: linear-gradient(160deg, rgba(212, 175, 55, 0.08), rgba(212, 175, 55, 0.02));
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    padding: 56px 48px;
+    text-align: left;
+    backdrop-filter: blur(10px);
+  }
+
+  .pricing-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+    font-size: 16px;
+  }
+  .pricing-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .pricing-row .label { color: var(--muted); }
+  .pricing-row .value { color: var(--cream); font-weight: 500; }
+
+  .pricing-total {
+    margin-top: 32px;
+    padding-top: 32px;
+    border-top: 2px solid var(--gold);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .pricing-total .label {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-style: italic;
+  }
+
+  .pricing-total .value {
+    font-family: 'Playfair Display', serif;
+    font-size: 56px;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: -0.02em;
+  }
+  .pricing-total .value .currency {
+    font-size: 24px;
+    margin-left: 4px;
+    font-weight: 400;
+  }
+
+  .pricing-cta {
+    margin-top: 48px;
+    text-align: center;
+  }
+
+  .pricing-deadline {
+    margin-top: 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--cyan);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  /* ========== GUARANTEE ========== */
+  .guarantee {
+    background: var(--paper);
+    padding: 100px 6vw;
+    text-align: center;
+    border-top: 1px solid var(--line-dark);
+  }
+
+  .guarantee-inner { max-width: 720px; margin: 0 auto; }
+
+  .guarantee-icon {
+    font-family: 'Playfair Display', serif;
+    font-size: 64px;
+    color: var(--gold);
+    margin-bottom: 20px;
+    line-height: 1;
+  }
+
+  .guarantee h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--navy);
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+  .guarantee h3 .italic { font-style: italic; color: var(--navy-light); }
+
+  .guarantee p {
+    font-size: 17px;
+    color: var(--muted-dark);
+    line-height: 1.7;
+  }
+
+  /* ========== FAQ ========== */
+  .faq {
+    background: var(--cream);
+    padding: 120px 6vw;
+    border-top: 1px solid var(--line-dark);
+  }
+
+  .faq-inner { max-width: 880px; margin: 0 auto; }
+
+  .faq-item {
+    border-bottom: 1px solid var(--line-dark);
+    padding: 24px 0;
+  }
+
+  .faq-q {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--navy);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    list-style: none;
+    transition: color 0.3s;
+  }
+  .faq-q::-webkit-details-marker { display: none; }
+  .faq-q::after {
+    content: '+';
+    font-size: 28px;
+    color: var(--gold);
+    transition: transform 0.3s;
+    flex-shrink: 0;
+  }
+
+  .faq-item[open] .faq-q::after { transform: rotate(45deg); }
+  .faq-item[open] .faq-q { color: var(--navy-light); }
+
+  .faq-a {
+    font-size: 15px;
+    color: var(--muted-dark);
+    line-height: 1.7;
+    margin-top: 16px;
+    padding-right: 48px;
+  }
+  .faq-a strong { color: var(--navy); font-weight: 600; }
+
+  .faq-pricing-table {
+    margin-top: 16px;
+    background: rgba(10, 31, 68, 0.04);
+    padding: 20px 24px;
+    border-left: 2px solid var(--gold);
+  }
+  .faq-pricing-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    font-size: 14px;
+  }
+  .faq-pricing-row .savings {
+    color: var(--gold);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  /* ========== CHECKOUT ========== */
+  .checkout {
+    background: var(--navy-deep);
+    color: var(--cream);
+    padding: 120px 6vw;
+    text-align: center;
+  }
+
+  .checkout-inner { max-width: 720px; margin: 0 auto; }
+
+  .checkout h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(40px, 5vw, 64px);
+    font-weight: 400;
+    line-height: 1.05;
+    margin-bottom: 24px;
+  }
+  .checkout h2 .italic { font-style: italic; color: var(--gold-light); }
+
+  .checkout-lead {
+    font-size: 18px;
+    color: var(--muted);
+    margin-bottom: 48px;
+    line-height: 1.6;
+  }
+
+  .bank-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    padding: 36px;
+    margin: 0 auto 40px;
+    max-width: 520px;
+    text-align: left;
+  }
+
+  .bank-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+    font-size: 14px;
+  }
+  .bank-row:last-child { border-bottom: none; }
+  .bank-row .label { color: var(--muted); }
+  .bank-row .value { color: var(--cream); font-family: 'JetBrains Mono', monospace; font-size: 13px; }
+
+  .bank-note {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 24px;
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  /* ========== FOOTER ========== */
+  .footer {
+    background: var(--navy-deep);
+    color: var(--muted);
+    padding: 40px 6vw;
+    text-align: center;
+    font-size: 13px;
+    border-top: 1px solid rgba(212, 175, 55, 0.1);
+  }
+  .footer .accent { color: var(--gold); }
+
+  /* ========== ANIMATIONS ========== */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 900px) {
+    .problem-grid { grid-template-columns: 1fr; gap: 48px; }
+    .topics-grid { grid-template-columns: 1fr; }
+    .proof-inner { grid-template-columns: 1fr; gap: 48px; }
+    .proof-quote { font-size: 26px; }
+    .delivery-steps { grid-template-columns: 1fr; gap: 40px; }
+    .section { padding: 80px 6vw; }
+    .pricing-card { padding: 36px 24px; }
+    .hero-meta { gap: 32px; }
+  }
+
+  @media (max-width: 540px) {
+    .hero h1 { font-size: 42px; }
+    .pricing-total .value { font-size: 40px; }
+    .nav-meta { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <nav class="nav">
+    <div class="logo">CFA<span class="accent"> · Mongolia</span></div>
+    <div class="nav-meta">Бэлэн · 2026.05</div>
+  </nav>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">CFA Level I</div>
+    <h1>
+      Монгол хэл дээр<br>
+      <span class="italic">CFA-ийн ном</span><br>
+      <span class="underline">анх удаа бий боллоо.</span>
+    </h1>
+    <p class="hero-lead">
+      Бидний зүгээс бэлэг болгож CFA Level 1 Quantitative Methods сэдвийг танд өгсөн билээ. Таалагдсан гэж найдаж байна. Үлдсэн 9 сэдвийг маш олон хүн асуусан тул бид бүхэн бэлэн болгож танд хүргэхэд бэлэн боллоо.
+    </p>
+    <div class="hero-cta-row">
+      <a href="#topics" class="btn-primary">Ямар сэдэв байгаа</a>
+      <a href="#pricing" class="btn-ghost">Үнийн санал →</a>
+    </div>
+
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        Багтсан
+        <strong>9 <span class="accent">сэдэв</span></strong>
+      </div>
+      <div class="hero-meta-item">
+        Нийт агуулга
+        <strong>1000+ <span class="accent">хуудас</span></strong>
+      </div>
+      <div class="hero-meta-item">
+        Танд очих
+        <strong>48 <span class="accent">цагт</span></strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="section problem">
+  <div class="section-eyebrow">Яагаад одоо</div>
+  <h2 class="section-title">Монгол хэл дээр<br>CFA-ийн ном <span class="italic">байгаагүй.</span></h2>
+  <p class="section-lead">
+    CFA-ийн curriculum 3000 гаруй хуудас, мэргэжлийн англи хэлээр бичигдсэн. Эх хэлээрээ ойлгож, тогтоох сонголт өнөөг хүртэл байсангүй. Энэ ажил Quant-ийн 11 module-аас эхэлсэн ба үлдсэн 9 сэдэв одоо бэлэн боллоо.
+  </p>
+
+  <div class="problem-grid">
+    <div>
+      <div class="problem-quote">
+        Discounting гэдгийг<br>
+        "хямдруулалт" гэж<br>
+        <span class="italic">орчуулсан минут</span><br>
+        утга нь алга болно.
+      </div>
+      <div class="problem-quote-attribution">— CFA нэр томъёоны асуудал</div>
+    </div>
+
+    <div class="problem-detail">
+      <h3>Энэ нь зөвхөн орчуулга биш.</h3>
+      <p>
+        CFA-ийн curriculum техникийн өндөр түвшний англи хэлээр бичигдсэн. <strong>Discounting</strong>, <strong>duration</strong>, <strong>covariance</strong>, <strong>amortization</strong> — эдгээрийг шууд орчуулах нь утгыг гажуудуулдаг.
+      </p>
+      <p>
+        Quant-ийн module-ыг та хараад мэдэж байгаа: тэр номонд <strong>эх хэлний логикоор</strong> бичсэн, гэхдээ техникийн нэр томъёог англиар хадгалсан. Энэ нь танд хоёр давуу талыг өгдөг — англи curriculum-аа уншихдаа ойлголт нь тогтсон, шалгалт өгөхдөө ч англи хэллэг танил байна.
+      </p>
+      <p>
+        Үлдсэн 9 сэдэв ч мөн ийм зарчмаар бичигдсэн.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S INSIDE -->
+<section class="section inside" id="topics">
+  <div class="section-eyebrow" style="color: var(--gold);">Багтах</div>
+  <h2 class="section-title">9 сэдэв. <span class="italic">Бүгд нэг дор.</span></h2>
+  <p class="section-lead">
+    CFA Level I-ийн curriculum-ын үлдсэн бүх үндсэн сэдвүүд, 1000 гаруй хуудас, нэг файл болж танд илгээгдэнэ. Аль сэдвээс эхлэх нь таны сонголт.
+  </p>
+
+  <div class="topics-grid">
+    <div class="topic-card">
+      <div class="topic-num">01</div>
+      <div class="topic-title">Ethical & Professional Standards</div>
+      <div class="topic-mn">Ёс зүй ба Мэргэжлийн Стандарт</div>
+      <div class="topic-desc">CFA Institute-ийн Code & Standards. Шалгалтын 15-20% энэ сэдвээс ирдэг — олон хүнийг унагадаг.</div>
+      <div class="topic-meta">~ 80 хуудас</div>
+    </div>
+
+    <div class="topic-card">
+      <div class="topic-num">02</div>
+      <div class="topic-title">Economics</div>
+      <div class="topic-mn">Эдийн Засаг</div>
+      <div class="topic-desc">Микро, макро, олон улсын худалдаа, валютын ханш. Их концептийн материал, эх хэлээрээ илүү ойлгомжтой.</div>
+      <div class="topic-meta">~ 75 хуудас</div>
+    </div>
+
+    <div class="topic-card">
+      <div class="topic-num">03</div>
+      <div class="topic-title">Financial Statement Analysis</div>
+      <div class="topic-mn">Санхүүгийн Тайлангийн Шинжилгээ</div>
+      <div class="topic-desc">Хамгийн том сэдэв. Балансын тайлан, ашиг алдагдал, мөнгөн гүйлгээ — IFRS vs GAAP ялгаатай.</div>
+      <div class="topic-meta">~ 120 хуудас</div>
+    </div>
+
+    <div class="topic-card">
+      <div class="topic-num">04</div>
+      <div class="topic-title">Corporate Issuers</div>
+      <div class="topic-mn">Корпорацийн Санхүү</div>
+      <div class="topic-desc">Capital structure, WACC, корпорацийн засаглал, ESG. Тооцооллын хэсэг түлхүү.</div>
+      <div class="topic-meta">~ 65 хуудас</div>
+    </div>
+
+    <div class="topic-card">
+      <div class="topic-num">05</div>
+      <div class="topic-title">Equity Investments</div>
+      <div class="topic-mn">Хувьцааны Хөрөнгө Оруулалт</div>
+      <div class="topic-desc">DDM, FCFE, multiples-аар үнэлэх аргууд. Practical, шалгалтанд их асуугддаг.</div>
+      <div class="topic-meta">~ 70 хуудас</div>
+    </div>
+
+    <div class="topic-card">
+      <div class="topic-num">06</div>
+      <div class="topic-title">Fixed Income</div>
+      <div class="topic-mn">Бонд ба Тогтмол Орлого</div>
+      <div class="topic-desc">Duration, convexity, yield curve, кредит эрсдэл. Quant-той ихээхэн уялдаатай.</div>
+      <div class="topic-meta">~ 90 хуудас</div>
+    </div>
+
+    <div class="topic-card">
+      <div class="topic-num">07</div>
+      <div class="topic-title">Derivatives</div>
+      <div class="topic-mn">Дериватив (Хэлцэл бүтээгдэхүүн)</div>
+      <div class="topic-desc">Forwards, futures, options, swaps. No-arbitrage pricing зарчим.</div>
+      <div class="topic-meta">~ 55 хуудас</div>
+    </div>
+
+    <div class="topic-card">
+      <div class="topic-num">08</div>
+      <div class="topic-title">Alternative Investments</div>
+      <div class="topic-mn">Альтернатив Хөрөнгө Оруулалт</div>
+      <div class="topic-desc">Hedge funds, private equity, real estate, commodities. Хамгийн жижиг weight, өндөр сонирхолтой.</div>
+      <div class="topic-meta">~ 45 хуудас</div>
+    </div>
+
+    <div class="topic-card">
+      <div class="topic-num">09</div>
+      <div class="topic-title">Portfolio Management</div>
+      <div class="topic-mn">Багц Удирдлага</div>
+      <div class="topic-desc">MPT, CAPM, IPS, эрсдэл-өгөөжийн харьцаа. Level II, III-ын суурь.</div>
+      <div class="topic-meta">~ 60 хуудас</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF -->
+<section class="proof">
+  <div class="proof-inner">
+    <div>
+      <div class="section-eyebrow">Та аль хэдийн харсан</div>
+      <div class="proof-quote">
+        "Энэ ном өөр түвшинд бичигдсэн.<br>
+        <span class="italic">Англи хэлэндээ муу хүн ч ойлгох боломжтой."</span>
+      </div>
+    </div>
+    <div class="proof-detail">
+      <h3>Quant-ийн module нь жишээ.</h3>
+      <p>
+        Танд <strong>Quant-ийн 11 module таалагдсан</strong> гэж найдаж байна. Тэр загвар, тэр стандарт, тэр л тэнцвэр (эх хэлний логик + англи терминологи) үлдсэн 9 сэдэвт шууд тусгагдсан.
+      </p>
+      <p>
+        Хэрвээ ном гарт орсны дараа Quant-ийн чанартай тэнцэхгүй гэж үзвэл 7 хоногийн дотор бүрэн буцаалт авна.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- DELIVERY -->
+<section class="delivery">
+  <div class="delivery-inner">
+    <div class="section-eyebrow" style="justify-content: center;">Хэрхэн ажиллах вэ</div>
+    <h2 class="section-title" style="margin: 0 auto 16px; text-align: center;">3 алхам. <span class="italic">48 цаг.</span></h2>
+
+    <div class="delivery-steps">
+      <div class="step">
+        <div class="step-num">i.</div>
+        <div class="step-title">Төлбөр хийх</div>
+        <div class="step-desc">Дансанд 199,000₮ шилжүүлж, гүйлгээний баримтыг имэйлээр илгээнэ.</div>
+        <div class="step-time">~ 2 минут</div>
+      </div>
+      <div class="step">
+        <div class="step-num">ii.</div>
+        <div class="step-title">Баталгаажуулалт</div>
+        <div class="step-desc">Гүйлгээ хүлээн авмагц танд имэйлээр баталгаажуулалт явна.</div>
+        <div class="step-time">~ 48 цаг</div>
+      </div>
+      <div class="step">
+        <div class="step-num">iii.</div>
+        <div class="step-title">Ном хүлээн авах</div>
+        <div class="step-desc">9 сэдэв, 1000 гаруй хуудас, нэг PDF файлаар инбокст ирнэ.</div>
+        <div class="step-time">Зэрэг</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="pricing-inner">
+    <div class="pricing-eyebrow">Үнийн санал</div>
+    <h2 class="pricing-headline">
+      4 сарын 30-аас өмнө бүртгүүлсэн хүмүүст<br>
+      <span class="italic">100,000₮ хямдарлаа.</span>
+    </h2>
+
+    <div class="price-comparison">
+      <div class="price-old-big">299,000<span class="currency">₮</span></div>
+      <div class="price-arrow">→</div>
+      <div class="price-new-big">199,000<span class="currency">₮</span></div>
+    </div>
+
+    <div class="savings-badge">
+      Хэмнэлт <strong>100,000₮</strong>
+    </div>
+
+    <div class="pricing-card">
+      <div class="pricing-row">
+        <span class="label">9 сэдэв, 1000+ хуудас</span>
+        <span class="value">PDF</span>
+      </div>
+      <div class="pricing-row">
+        <span class="label">Хүргэлт</span>
+        <span class="value">48 цагт</span>
+      </div>
+      <div class="pricing-row">
+        <span class="label">Буцаалтын баталгаа</span>
+        <span class="value">7 хоног</span>
+      </div>
+
+      <div class="pricing-total">
+        <span class="label">Тусгай үнэ</span>
+        <span class="value">199,000<span class="currency">₮</span></span>
+      </div>
+    </div>
+
+    <div class="pricing-cta">
+      <a href="#checkout" class="btn-primary">Одоо худалдаж авах</a>
+    </div>
+    <div class="pricing-deadline">5/5-ний дараа · 299,000₮ руу буцна</div>
+  </div>
+</section>
+
+<!-- GUARANTEE -->
+<section class="guarantee">
+  <div class="guarantee-inner">
+    <div class="guarantee-icon">⚜</div>
+    <h3>7 хоногийн <span class="italic">буцаалтын баталгаа.</span></h3>
+    <p>
+      Ном гарт орсноос хойш 7 хоногийн дотор та чанарын талаар сэтгэл хангалуун бус байвал бүрэн буцаалт авна. Энэ нь миний эрсдэл, таных биш.
+    </p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="faq-inner">
+    <div class="section-eyebrow" style="justify-content: center;">Түгээмэл асуулт</div>
+    <h2 class="section-title" style="text-align: center; margin: 0 auto 56px;">Асуултууд.</h2>
+
+    <details class="faq-item">
+      <summary class="faq-q">Хэзээ хүлээн авах вэ?</summary>
+      <div class="faq-a">Гүйлгээний баримт хүлээн авмагц 48 цагийн дотор танд имэйлээр PDF илгээгдэнэ. 9 сэдэв нэг файлд багтсан.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-q">Зөвхөн нэг сэдвийг авч болох уу?</summary>
+      <div class="faq-a">
+        Болно. <strong>Нэг сэдвийг тусад нь 40,000₮.</strong> Гэхдээ бүгдийг нэг дор авах нь хамаагүй ашигтай:
+        <div class="faq-pricing-table">
+          <div class="faq-pricing-row">
+            <span>9 сэдэв тус тусад нь</span>
+            <span>9 × 40,000 = 360,000₮</span>
+          </div>
+          <div class="faq-pricing-row">
+            <span>9 сэдэв нэг дор (тусгай үнэ)</span>
+            <span>199,000₮</span>
+          </div>
+          <div class="faq-pricing-row">
+            <span>Хэмнэлт</span>
+            <span class="savings">161,000₮</span>
+          </div>
+        </div>
+        Аль сэдвийг авахаа шийдсэн бол надтай шууд холбогдоорой.
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-q">PDF үү, хэвлэмэл үү?</summary>
+      <div class="faq-a">PDF хэлбэрээр илгээгдэнэ — таблет, утас, компьютерт уншигдана. Print хийх эрхтэй (нэг хүний хэрэглээ). Хэвлэмэл хувилбар одоогоор санал болгоогүй.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-q">Quant-ийн module шиг чанарын вэ?</summary>
+      <div class="faq-a">Тэр загвар, тэр стандарт. Эх хэлний логикоор бичигдсэн, гэхдээ техникийн нэр томъёог англиар хадгалсан. Quant-ийн module-ыг "юу таалагдсан, юу буддиантай" гэж сэтгэснийг үлдсэн 9 сэдэвт шууд тусгасан.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-q">Энэ англи curriculum-ыг орлох уу?</summary>
+      <div class="faq-a">Үгүй. CFA Institute-ийн оригинал curriculum-ыг суралцагч заавал унших ёстой. Энэ ном бол <strong>хамтран ашиглах туслах материал</strong> — англиар уншиж буй сэдвийг эх хэлээрээ ойлгож, тогтоох зорилготой.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-q">5/5-ний дараа худалдаж авч болох уу?</summary>
+      <div class="faq-a">Болно — гэхдээ 299,000₮ үнээр. 199,000₮ тусгай үнэ нь зөвхөн <strong>4 сарын 30-аас өмнө бүртгүүлсэн хүмүүст</strong> 5/5 хүртэл хүчинтэй.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-q">Level II, III-ийн ном хэзээ гарах вэ?</summary>
+      <div class="faq-a">Level III-ийн материалын ажил аль хэдийн эхэлсэн — энэ нь манай гол урт хугацааны бүтээгдэхүүн. Level I худалдан авсан хүмүүс Level II ба III гарахад хамгийн түрүүнд мэдэх ба тусгай үнэ авах боломжтой.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-q">Юу болохгүй бол яах вэ?</summary>
+      <div class="faq-a">7 хоногийн дотор бүрэн буцаалт авах эрхтэй. Ямар нэг асуудал гарвал шууд надтай холбогдоорой — шуурхай шийднэ.</div>
+    </details>
+  </div>
+</section>
+
+<!-- CHECKOUT -->
+<section class="checkout" id="checkout">
+  <div class="checkout-inner">
+    <div class="section-eyebrow" style="justify-content: center; color: var(--gold);">Худалдаж авах</div>
+    <h2>Ердөө 199,000₮-р<br>CFA шалгалтын бүх агуулгыг<br><span class="italic">эх хэл дээрээ эзэмшээрэй.</span></h2>
+    <p class="checkout-lead">
+      Дансанд шилжүүлэг хийгээд гүйлгээний баримтыг доорх имэйл хаяг руу илгээгээрэй. 48 цагийн дотор танд PDF имэйлдэгдэнэ.
+    </p>
+
+    <div class="bank-card">
+      <div class="bank-row">
+        <span class="label">Банк</span>
+        <span class="value">[Хаан Банк / Голомт]</span>
+      </div>
+      <div class="bank-row">
+        <span class="label">Дансны дугаар</span>
+        <span class="value">[XXXX-XXXX-XXXX]</span>
+      </div>
+      <div class="bank-row">
+        <span class="label">Эзэмшигч</span>
+        <span class="value">[Чинзо овог нэр]</span>
+      </div>
+      <div class="bank-row">
+        <span class="label">Гүйлгээний утга</span>
+        <span class="value">CFA-L1 + ИМЭЙЛ</span>
+      </div>
+      <div class="bank-row">
+        <span class="label">Дүн</span>
+        <span class="value" style="color: var(--gold);">199,000₮</span>
+      </div>
+      <div class="bank-row">
+        <span class="label">Гүйлгээний баримт илгээх</span>
+        <span class="value" style="color: var(--gold);">[ИМЭЙЛ ХАЯГ]</span>
+      </div>
+    </div>
+
+    <a href="mailto:[ИМЭЙЛ ХАЯГ]?subject=CFA%20Level%20I%20-%20Гүйлгээний%20баримт" class="btn-primary" style="background: var(--gold); color: var(--navy-deep);">Имэйлээр илгээх</a>
+
+    <p class="bank-note">
+      Шилжүүлэг хийсний дараа гүйлгээний баримтын зургийг (screenshot) дээрх имэйл хаяг руу илгээгээрэй. 48 цагийн дотор танд PDF имэйлдэгдэнэ.
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>CFA <span class="accent">·</span> Mongolia · Монгол хэл дээр анх удаа · 2026</p>
+</footer>
+
+</body>
+</html>
