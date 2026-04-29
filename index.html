@@ -1,0 +1,3404 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CFA Level I — Монгол хэл дээр анх удаа</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0A1F44;
+    --navy-deep: #050E22;
+    --navy-light: #1A3060;
+    --gold: #D4AF37;
+    --gold-light: #F4D67A;
+    --cyan: #00E5FF;
+    --cream: #F8F4E9;
+    --paper: #FAF7EF;
+    --ink: #0A1F44;
+    --muted: rgba(248, 244, 233, 0.65);
+    --muted-dark: rgba(10, 31, 68, 0.62);
+    --line: rgba(212, 175, 55, 0.18);
+    --line-dark: rgba(10, 31, 68, 0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', -apple-system, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.55;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ========== HERO ========== */
+  .hero {
+    background: var(--navy-deep);
+    color: var(--cream);
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(0, 229, 255, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(212, 175, 55, 0.10) 0%, transparent 55%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(212, 175, 55, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(212, 175, 55, 0.04) 1px, transparent 1px);
+    background-size: 80px 80px;
+    pointer-events: none;
+  }
+
+  .nav {
+    position: relative;
+    z-index: 10;
+    padding: 24px 6vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+  }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: -0.02em;
+    color: var(--cream);
+  }
+  .logo .accent { color: var(--gold); font-style: italic; }
+
+  .nav-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .nav-meta::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: var(--cyan);
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--cyan);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* HERO CONTENT — single column, centered */
+  .hero-content {
+    position: relative;
+    z-index: 5;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 6vw;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 40px;
+    animation: fadeUp 0.8s ease-out;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 36px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: clamp(48px, 7.5vw, 96px);
+    line-height: 1.0;
+    letter-spacing: -0.025em;
+    margin-bottom: 40px;
+    max-width: 1000px;
+    animation: fadeUp 1s ease-out 0.1s both;
+  }
+  .hero h1 .italic { font-style: italic; color: var(--gold-light); font-weight: 600; }
+  .hero h1 .underline {
+    background-image: linear-gradient(transparent 65%, rgba(0, 229, 255, 0.35) 65%);
+  }
+
+  .hero-lead {
+    font-size: 21px;
+    line-height: 1.55;
+    color: var(--muted);
+    max-width: 640px;
+    margin-bottom: 56px;
+    animation: fadeUp 1s ease-out 0.25s both;
+  }
+
+  .hero-cta-row {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+    flex-wrap: wrap;
+    animation: fadeUp 1s ease-out 0.4s both;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--navy-deep);
+    padding: 20px 40px;
+    border: none;
+    border-radius: 0;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-primary::after {
+    content: '→';
+    transition: transform 0.3s;
+  }
+  .btn-primary:hover {
+    background: var(--cream);
+    color: var(--navy-deep);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(212, 175, 55, 0.3);
+  }
+  .btn-primary:hover::after { transform: translateX(4px); }
+
+  .btn-ghost {
+    color: var(--cream);
+    text-decoration: none;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(248, 244, 233, 0.4);
+    padding-bottom: 4px;
+    transition: all 0.3s;
+  }
+  .btn-ghost:hover { color: var(--gold); border-color: var(--gold); }
+
+  .hero-meta {
+    margin-top: 80px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(212, 175, 55, 0.15);
+    display: flex;
+    gap: 64px;
+    flex-wrap: wrap;
+    animation: fadeUp 1s ease-out 0.55s both;
+  }
+  .hero-meta-item {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .hero-meta-item strong {
+    display: block;
+    color: var(--cream);
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: none;
+    margin-top: 8px;
+  }
+  .hero-meta-item strong .accent { color: var(--gold); font-style: italic; }
+
+  /* ========== SECTION SHARED ========== */
+  .section {
+    padding: 120px 6vw;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .section-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .section-eyebrow::before {
+    content: '';
+    width: 28px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(34px, 4.5vw, 56px);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+    max-width: 800px;
+  }
+  .section-title .italic { font-style: italic; color: var(--navy-light); font-weight: 600; }
+
+  .section-lead {
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--muted-dark);
+    max-width: 680px;
+    margin-bottom: 56px;
+  }
+
+  /* ========== PROBLEM ========== */
+  .problem {
+    background: var(--paper);
+    border-top: 1px solid var(--line-dark);
+  }
+
+  .problem-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .problem-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 3.5vw, 40px);
+    font-weight: 400;
+    line-height: 1.25;
+    color: var(--navy);
+    letter-spacing: -0.01em;
+    padding-left: 32px;
+    border-left: 3px solid var(--gold);
+  }
+  .problem-quote .italic { font-style: italic; color: var(--navy-light); }
+  .problem-quote-attribution {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--muted-dark);
+    letter-spacing: 0.1em;
+    margin-top: 24px;
+    text-transform: uppercase;
+  }
+
+  .problem-detail h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--navy);
+    margin-bottom: 24px;
+    line-height: 1.2;
+  }
+  .problem-detail p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--muted-dark);
+    margin-bottom: 18px;
+  }
+  .problem-detail strong { color: var(--navy); font-weight: 600; }
+
+  /* ========== WHAT'S INSIDE ========== */
+  .inside {
+    background: var(--navy);
+    color: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .inside::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60%;
+    height: 100%;
+    background: radial-gradient(ellipse at top right, rgba(212, 175, 55, 0.12), transparent 60%);
+    pointer-events: none;
+  }
+
+  .inside .section-title { color: var(--cream); }
+  .inside .section-title .italic { color: var(--gold-light); }
+  .inside .section-lead { color: var(--muted); }
+
+  .topics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(212, 175, 55, 0.15);
+    margin-top: 48px;
+  }
+
+  .topic-card {
+    background: var(--navy);
+    padding: 36px 32px;
+    position: relative;
+    transition: background 0.4s;
+  }
+  .topic-card:hover { background: var(--navy-light); }
+
+  .topic-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    margin-bottom: 16px;
+  }
+
+  .topic-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+
+  .topic-mn {
+    font-size: 14px;
+    color: var(--gold-light);
+    margin-bottom: 16px;
+    font-style: italic;
+  }
+
+  .topic-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .topic-meta {
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(212, 175, 55, 0.15);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* ========== PROOF ========== */
+  .proof {
+    background: var(--paper);
+    padding: 120px 6vw;
+  }
+
+  .proof-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 100px;
+    align-items: center;
+  }
+
+  .proof-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 400;
+    line-height: 1.25;
+    color: var(--navy);
+    letter-spacing: -0.01em;
+    padding-left: 32px;
+    border-left: 3px solid var(--gold);
+  }
+  .proof-quote .italic { font-style: italic; color: var(--navy-light); }
+
+  .proof-detail h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--navy);
+    margin-bottom: 24px;
+    line-height: 1.2;
+  }
+  .proof-detail p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--muted-dark);
+    margin-bottom: 18px;
+  }
+  .proof-detail strong { color: var(--navy); font-weight: 600; }
+
+  /* ========== DELIVERY ========== */
+  .delivery {
+    background: var(--cream);
+    padding: 100px 6vw;
+    border-top: 1px solid var(--line-dark);
+    border-bottom: 1px solid var(--line-dark);
+    text-align: center;
+  }
+
+  .delivery-inner { max-width: 880px; margin: 0 auto; }
+
+  .delivery-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-top: 64px;
+  }
+
+  .step {
+    text-align: center;
+    position: relative;
+  }
+
+  .step-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 56px;
+    font-weight: 400;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 16px;
+    font-style: italic;
+  }
+
+  .step-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 12px;
+  }
+
+  .step-desc {
+    font-size: 14px;
+    color: var(--muted-dark);
+    line-height: 1.6;
+  }
+
+  .step-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--cyan);
+    letter-spacing: 0.15em;
+    margin-top: 12px;
+    text-transform: uppercase;
+  }
+
+  /* ========== PRICING ========== */
+  .pricing {
+    background: var(--navy-deep);
+    color: var(--cream);
+    padding: 140px 6vw;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pricing::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.08) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .pricing-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .pricing-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .pricing-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+  .pricing-headline .italic { font-style: italic; color: var(--gold-light); }
+
+  .pricing-subhead {
+    font-size: 17px;
+    color: var(--muted);
+    margin-bottom: 56px;
+    line-height: 1.6;
+  }
+  .pricing-subhead strong { color: var(--cream); font-weight: 500; }
+
+  /* Big visceral discount display */
+  .price-comparison {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    margin: 0 auto 48px;
+    flex-wrap: wrap;
+  }
+
+  .price-old-big {
+    position: relative;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(40px, 5vw, 64px);
+    font-weight: 400;
+    color: var(--muted);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .price-old-big::after {
+    content: '';
+    position: absolute;
+    left: -8px;
+    right: -8px;
+    top: 52%;
+    height: 3px;
+    background: rgba(212, 175, 55, 0.7);
+    transform: rotate(-8deg);
+  }
+  .price-old-big .currency {
+    font-size: 0.55em;
+    color: rgba(248, 244, 233, 0.4);
+    margin-left: 4px;
+    font-weight: 400;
+  }
+
+  .price-arrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 32px;
+    color: var(--gold);
+    font-weight: 300;
+  }
+
+  .price-new-big {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(72px, 10vw, 120px);
+    font-weight: 600;
+    color: var(--gold);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    text-shadow: 0 4px 30px rgba(212, 175, 55, 0.3);
+  }
+  .price-new-big .currency {
+    font-size: 0.4em;
+    margin-left: 4px;
+    font-weight: 400;
+  }
+
+  .savings-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(0, 229, 255, 0.12);
+    border: 1px solid rgba(0, 229, 255, 0.4);
+    color: var(--cyan);
+    padding: 12px 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 56px;
+  }
+  .savings-badge strong {
+    color: var(--cyan);
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  /* Two-column comparison */
+  .pricing-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 48px;
+    text-align: left;
+  }
+
+  .pricing-compare-col {
+    background: rgba(248, 244, 233, 0.04);
+    border: 1px solid rgba(212, 175, 55, 0.18);
+    padding: 36px 32px;
+    transition: all 0.3s ease;
+  }
+
+  .pricing-compare-col.highlight {
+    background: linear-gradient(160deg, rgba(212, 175, 55, 0.12), rgba(212, 175, 55, 0.03));
+    border: 1px solid rgba(212, 175, 55, 0.5);
+    box-shadow: 0 12px 40px rgba(212, 175, 55, 0.08);
+  }
+
+  .pricing-compare-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+  }
+  .pricing-compare-col.highlight .pricing-compare-eyebrow {
+    color: var(--gold);
+  }
+
+  .pricing-compare-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+  }
+
+  .pricing-compare-desc {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+
+  .pricing-compare-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 44px;
+    font-weight: 600;
+    color: var(--cream);
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+  .pricing-compare-col.highlight .pricing-compare-price {
+    color: var(--gold);
+  }
+  .pricing-compare-price .currency {
+    font-size: 20px;
+    margin-left: 4px;
+    font-weight: 400;
+  }
+
+  .pricing-compare-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* Math justification block */
+  .pricing-math {
+    background: rgba(0, 229, 255, 0.04);
+    border-left: 2px solid var(--cyan);
+    padding: 24px 28px;
+    margin-bottom: 48px;
+    text-align: left;
+    max-width: 540px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .pricing-math-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 10px 0;
+    font-size: 14px;
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .pricing-math-row strong {
+    color: var(--cream);
+    font-weight: 500;
+  }
+  .pricing-math-row.total {
+    border-top: 1px solid rgba(0, 229, 255, 0.25);
+    padding-top: 14px;
+    margin-top: 6px;
+    font-size: 15px;
+  }
+  .pricing-math-row.total span:first-child {
+    color: var(--cream);
+  }
+  .pricing-math-row .savings {
+    color: var(--cyan);
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+  .pricing-card {
+    background: linear-gradient(160deg, rgba(212, 175, 55, 0.08), rgba(212, 175, 55, 0.02));
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    padding: 56px 48px;
+    text-align: left;
+    backdrop-filter: blur(10px);
+  }
+
+  .pricing-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+    font-size: 16px;
+  }
+  .pricing-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .pricing-row .label { color: var(--muted); }
+  .pricing-row .value { color: var(--cream); font-weight: 500; }
+
+  .pricing-total {
+    margin-top: 32px;
+    padding-top: 32px;
+    border-top: 2px solid var(--gold);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .pricing-total .label {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-style: italic;
+  }
+
+  .pricing-total .value {
+    font-family: 'Playfair Display', serif;
+    font-size: 56px;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: -0.02em;
+  }
+  .pricing-total .value .currency {
+    font-size: 24px;
+    margin-left: 4px;
+    font-weight: 400;
+  }
+
+  .pricing-cta {
+    margin-top: 48px;
+    text-align: center;
+  }
+
+  .pricing-deadline {
+    margin-top: 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--cyan);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  /* ========== GUARANTEE ========== */
+  .guarantee {
+    background: var(--paper);
+    padding: 100px 6vw;
+    text-align: center;
+    border-top: 1px solid var(--line-dark);
+  }
+
+  .guarantee-inner { max-width: 720px; margin: 0 auto; }
+
+  .guarantee-icon {
+    font-family: 'Playfair Display', serif;
+    font-size: 64px;
+    color: var(--gold);
+    margin-bottom: 20px;
+    line-height: 1;
+  }
+
+  .guarantee h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--navy);
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+  .guarantee h3 .italic { font-style: italic; color: var(--navy-light); }
+
+  .guarantee p {
+    font-size: 17px;
+    color: var(--muted-dark);
+    line-height: 1.7;
+  }
+
+  .guarantee p strong { color: var(--gold); font-weight: 600; }
+
+  /* ========== BOOK PREVIEW ========== */
+  .preview {
+    background: linear-gradient(180deg, var(--paper) 0%, #F4EFE3 100%);
+    padding: 120px 6vw;
+    border-top: 1px solid var(--line-dark);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .preview::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.06) 0%, transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(10, 31, 68, 0.04) 0%, transparent 40%);
+    pointer-events: none;
+  }
+
+  .preview-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .preview-header {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+
+  /* Single large book page */
+  .preview-page-large {
+    background: #FDFBF5;
+    background-image:
+      linear-gradient(180deg, rgba(212, 175, 55, 0.02) 0%, transparent 8%),
+      linear-gradient(0deg, rgba(10, 31, 68, 0.015) 0%, transparent 8%);
+    border: 1px solid rgba(10, 31, 68, 0.08);
+    box-shadow:
+      0 1px 1px rgba(10, 31, 68, 0.04),
+      0 4px 8px rgba(10, 31, 68, 0.06),
+      0 24px 48px rgba(10, 31, 68, 0.10),
+      0 48px 96px rgba(10, 31, 68, 0.06),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+    position: relative;
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    max-width: 880px;
+    margin: 0 auto;
+  }
+
+  .preview-page-large::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 1px;
+    background: linear-gradient(180deg,
+      transparent 0%,
+      rgba(10, 31, 68, 0.1) 15%,
+      rgba(10, 31, 68, 0.1) 85%,
+      transparent 100%);
+    box-shadow: 1px 0 0 rgba(255, 255, 255, 0.8);
+  }
+
+  .preview-page-large:hover {
+    transform: translateY(-4px);
+  }
+
+  .preview-page-content {
+    padding: 56px 64px 48px;
+  }
+
+  .preview-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(10, 31, 68, 0.5);
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(10, 31, 68, 0.12);
+    margin-bottom: 36px;
+  }
+  .preview-page-header .module-tag { color: var(--gold); letter-spacing: 0.18em; }
+
+  /* LOS hero block */
+  .preview-los-hero {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 28px;
+    align-items: center;
+    margin-bottom: 36px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid rgba(10, 31, 68, 0.08);
+  }
+
+  .preview-los-badge {
+    background: var(--navy);
+    color: var(--cream);
+    width: 80px;
+    text-align: center;
+    padding: 16px 0;
+    flex-shrink: 0;
+  }
+  .preview-los-badge-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+  .preview-los-badge-num {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 1;
+  }
+
+  .preview-los-text {
+    font-family: 'DM Sans', sans-serif;
+  }
+  .preview-los-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .preview-los-content {
+    font-size: 14px;
+    color: rgba(10, 31, 68, 0.8);
+    line-height: 1.55;
+  }
+
+  .preview-main-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 600;
+    color: var(--navy);
+    line-height: 1.05;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+  }
+  .preview-main-title .italic { font-style: italic; color: var(--navy-light); font-weight: 500; }
+
+  .preview-main-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: rgba(10, 31, 68, 0.55);
+    margin-bottom: 32px;
+    letter-spacing: 0.05em;
+    font-style: italic;
+  }
+
+  .preview-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 8px;
+  }
+
+  .preview-col h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 12px;
+    line-height: 1.25;
+  }
+
+  .preview-col p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: rgba(10, 31, 68, 0.78);
+    line-height: 1.65;
+    margin-bottom: 14px;
+  }
+  .preview-col p strong { color: var(--navy); font-weight: 600; }
+  .preview-col p em { color: var(--gold); font-style: normal; font-weight: 600; }
+
+  .preview-formula-large {
+    background: linear-gradient(180deg, #FAF5E6 0%, #F4ECD3 100%);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    padding: 20px 24px;
+    margin: 24px 0;
+    position: relative;
+  }
+  .preview-formula-large::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--gold);
+  }
+  .preview-formula-large-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--navy);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-weight: 700;
+  }
+  .preview-formula-large-body {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: var(--navy);
+    line-height: 1.7;
+    font-weight: 500;
+  }
+
+  .preview-example {
+    background: rgba(10, 31, 68, 0.03);
+    border-left: 3px solid var(--navy);
+    padding: 24px 28px;
+    margin: 24px 0;
+  }
+  .preview-example-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: var(--navy-light);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+  .preview-example-title {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 19px;
+    color: var(--navy);
+    margin-bottom: 12px;
+  }
+  .preview-example-text {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: rgba(10, 31, 68, 0.78);
+    line-height: 1.65;
+  }
+
+  .preview-calc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    margin: 24px 0;
+    border: 1px solid rgba(10, 31, 68, 0.12);
+  }
+
+  .preview-calc-cell {
+    padding: 24px;
+    position: relative;
+  }
+  .preview-calc-cell:first-child {
+    border-right: 1px solid rgba(10, 31, 68, 0.12);
+  }
+  .preview-calc-cell.highlight {
+    background: linear-gradient(180deg, rgba(212, 175, 55, 0.06) 0%, rgba(212, 175, 55, 0.02) 100%);
+  }
+
+  .preview-calc-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(10, 31, 68, 0.55);
+    margin-bottom: 10px;
+  }
+  .preview-calc-formula {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: rgba(10, 31, 68, 0.7);
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+  .preview-calc-result {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 6px;
+    letter-spacing: -0.02em;
+  }
+  .preview-calc-result.wrong { color: rgba(220, 80, 60, 0.85); }
+  .preview-calc-result.right { color: var(--gold); }
+
+  .preview-calc-verdict {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: rgba(10, 31, 68, 0.65);
+    font-style: italic;
+  }
+
+  .preview-aha {
+    background: var(--navy);
+    color: var(--cream);
+    padding: 28px 32px;
+    margin-top: 32px;
+    position: relative;
+    border-left: 4px solid var(--gold);
+  }
+  .preview-aha-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .preview-aha-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    line-height: 1.35;
+    color: var(--cream);
+    font-weight: 400;
+  }
+  .preview-aha-text .italic { font-style: italic; color: var(--gold-light); font-weight: 500; }
+
+  .preview-page-footer-large {
+    margin-top: 36px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(10, 31, 68, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: rgba(10, 31, 68, 0.4);
+    letter-spacing: 0.15em;
+  }
+  .preview-page-num-large {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: rgba(10, 31, 68, 0.55);
+  }
+
+  .preview-footer-note {
+    text-align: center;
+    margin-top: 56px;
+    font-size: 14px;
+    color: var(--muted-dark);
+    font-style: italic;
+    line-height: 1.6;
+  }
+  .preview-footer-note strong { color: var(--navy); font-weight: 600; font-style: normal; }
+
+  /* ========== FAQ ========== */
+  .faq {
+    background: var(--cream);
+    padding: 120px 6vw;
+    border-top: 1px solid var(--line-dark);
+  }
+
+  .faq-inner { max-width: 880px; margin: 0 auto; }
+
+  .faq-item {
+    border-bottom: 1px solid var(--line-dark);
+    padding: 24px 0;
+  }
+
+  .faq-q {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--navy);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    list-style: none;
+    transition: color 0.3s;
+  }
+  .faq-q::-webkit-details-marker { display: none; }
+  .faq-q::after {
+    content: '+';
+    font-size: 28px;
+    color: var(--gold);
+    transition: transform 0.3s;
+    flex-shrink: 0;
+  }
+
+  .faq-item[open] .faq-q::after { transform: rotate(45deg); }
+  .faq-item[open] .faq-q { color: var(--navy-light); }
+
+  .faq-a {
+    font-size: 15px;
+    color: var(--muted-dark);
+    line-height: 1.7;
+    margin-top: 16px;
+    padding-right: 48px;
+  }
+  .faq-a strong { color: var(--navy); font-weight: 600; }
+
+  .faq-pricing-table {
+    margin-top: 16px;
+    background: rgba(10, 31, 68, 0.04);
+    padding: 20px 24px;
+    border-left: 2px solid var(--gold);
+  }
+  .faq-pricing-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    font-size: 14px;
+  }
+  .faq-pricing-row .savings {
+    color: var(--gold);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  /* ========== CHECKOUT ========== */
+  .checkout {
+    background: var(--navy-deep);
+    color: var(--cream);
+    padding: 120px 6vw;
+    text-align: center;
+  }
+
+  .checkout-inner { max-width: 720px; margin: 0 auto; }
+
+  .checkout h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(40px, 5vw, 64px);
+    font-weight: 400;
+    line-height: 1.05;
+    margin-bottom: 24px;
+  }
+  .checkout h2 .italic { font-style: italic; color: var(--gold-light); }
+
+  .checkout-lead {
+    font-size: 18px;
+    color: var(--muted);
+    margin-bottom: 48px;
+    line-height: 1.6;
+  }
+
+  .bank-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    padding: 36px;
+    margin: 0 auto 40px;
+    max-width: 520px;
+    text-align: left;
+  }
+
+  .bank-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+    font-size: 14px;
+  }
+  .bank-row:last-child { border-bottom: none; }
+  .bank-row .label { color: var(--muted); }
+  .bank-row .value { color: var(--cream); font-family: 'JetBrains Mono', monospace; font-size: 13px; }
+
+  /* Purchase option selector */
+  .purchase-options {
+    margin: 40px 0 32px;
+    text-align: left;
+  }
+
+  .purchase-options-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .purchase-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .purchase-tab {
+    background: rgba(248, 244, 233, 0.04);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    padding: 20px 16px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.25s ease;
+    user-select: none;
+  }
+  .purchase-tab:hover {
+    border-color: rgba(212, 175, 55, 0.45);
+    background: rgba(248, 244, 233, 0.06);
+  }
+  .purchase-tab.active {
+    background: linear-gradient(160deg, rgba(212, 175, 55, 0.18), rgba(212, 175, 55, 0.05));
+    border-color: var(--gold);
+    box-shadow: 0 8px 24px rgba(212, 175, 55, 0.12);
+  }
+
+  .purchase-tab-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 4px;
+  }
+  .purchase-tab.active .purchase-tab-title { color: var(--gold); }
+
+  .purchase-tab-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* Quantity selector for bundle option */
+  .qty-selector {
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(0, 229, 255, 0.04);
+    border-left: 2px solid var(--cyan);
+    padding: 18px 24px;
+    margin-bottom: 20px;
+  }
+  .qty-selector.visible { display: flex; }
+
+  .qty-selector-label {
+    font-size: 13px;
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.05em;
+  }
+
+  .qty-controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .qty-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    background: transparent;
+    color: var(--cream);
+    font-size: 18px;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .qty-btn:hover:not(:disabled) {
+    background: var(--gold);
+    color: var(--navy-deep);
+    border-color: var(--gold);
+  }
+  .qty-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  .qty-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--gold);
+    min-width: 32px;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  /* Computed total display */
+  .purchase-total {
+    background: linear-gradient(160deg, rgba(212, 175, 55, 0.10), rgba(212, 175, 55, 0.02));
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    padding: 24px 28px;
+    margin-bottom: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .purchase-total-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: var(--cream);
+  }
+  .purchase-total-formula {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 4px;
+    letter-spacing: 0.05em;
+    font-style: normal;
+  }
+
+  .purchase-total-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: -0.02em;
+  }
+  .purchase-total-amount .currency {
+    font-size: 18px;
+    margin-left: 2px;
+    font-weight: 400;
+  }
+  .purchase-total-savings {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--cyan);
+    text-align: right;
+    margin-top: 4px;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+  }
+
+  .bank-note {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 24px;
+    line-height: 1.6;
+    font-style: italic;
+  }
+
+  /* ========== FREE PREVIEW ========== */
+  .free-preview {
+    background: var(--paper);
+    padding: 100px 6vw;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .free-preview::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.06) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .free-preview-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .free-preview-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+  .free-preview-eyebrow::before,
+  .free-preview-eyebrow::after {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.5;
+  }
+
+  .free-preview-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  .free-preview-title .italic {
+    font-style: italic;
+    color: var(--navy-light);
+    font-weight: 600;
+  }
+
+  .free-preview-lead {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--muted-dark);
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 56px;
+  }
+
+  .free-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .free-preview-card {
+    background: #FFFFFF;
+    border: 1px solid var(--line-dark);
+    border-radius: 4px;
+    padding: 36px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .free-preview-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 100%);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+
+  .free-preview-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(212, 175, 55, 0.4);
+    box-shadow: 0 16px 40px -12px rgba(10, 31, 68, 0.15);
+  }
+
+  .free-preview-card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .free-preview-card-tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: rgba(212, 175, 55, 0.1);
+    padding: 4px 10px;
+    border-radius: 2px;
+    margin-bottom: 18px;
+    font-weight: 500;
+    align-self: flex-start;
+  }
+
+  .free-preview-card-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted-dark);
+    margin-bottom: 8px;
+  }
+
+  .free-preview-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+
+  .free-preview-card-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 17px;
+    color: var(--navy-light);
+    margin-bottom: 24px;
+    font-weight: 400;
+  }
+
+  .free-preview-card-meta {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 28px;
+    padding: 18px 0;
+    border-top: 1px solid var(--line-dark);
+    border-bottom: 1px solid var(--line-dark);
+  }
+
+  .free-preview-card-meta-item {
+    text-align: center;
+  }
+
+  .free-preview-card-meta-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .free-preview-card-meta-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted-dark);
+  }
+
+  .free-preview-card-desc {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--muted-dark);
+    margin-bottom: 28px;
+    flex: 1;
+  }
+
+  .free-preview-card-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--paper);
+    background: var(--navy-deep);
+    padding: 16px 24px;
+    border-radius: 2px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    align-self: stretch;
+  }
+
+  .free-preview-card-cta:hover {
+    background: var(--gold);
+    color: var(--navy-deep);
+  }
+
+  .free-preview-card-cta-icon {
+    font-size: 14px;
+  }
+
+  .free-preview-note {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--muted-dark);
+    line-height: 1.6;
+  }
+  .free-preview-note .accent {
+    color: var(--gold);
+    font-weight: 500;
+  }
+
+  /* ========== PAYMENT STEPPER ========== */
+  .payment-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 32px;
+  }
+
+  .pay-step {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    border-radius: 4px;
+    padding: 28px 28px 28px 88px;
+    position: relative;
+    text-align: left;
+    transition: all 0.4s ease;
+  }
+
+  .pay-step::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, var(--gold) 0%, var(--gold-light) 100%);
+    opacity: 0.4;
+  }
+
+  .pay-step:hover {
+    border-color: rgba(212, 175, 55, 0.45);
+  }
+
+  .pay-step-num {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    width: 44px;
+    height: 44px;
+    background: var(--gold);
+    color: var(--navy-deep);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 1;
+  }
+
+  .pay-step-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+
+  .pay-step-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 8px;
+    line-height: 1.25;
+  }
+
+  .pay-step-desc {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 18px;
+  }
+
+  /* Copy field — used in step 1 */
+  .copy-field {
+    display: flex;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+
+  .copy-field-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 14px 16px 0;
+  }
+
+  .copy-field-value-wrap {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    width: 100%;
+  }
+
+  .copy-field-value {
+    flex: 1;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: var(--cream);
+    padding: 12px 16px 14px;
+    word-break: break-all;
+    align-self: center;
+  }
+
+  .copy-btn {
+    background: var(--gold);
+    color: var(--navy-deep);
+    border: none;
+    padding: 14px 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .copy-btn:hover { background: var(--gold-light); }
+  .copy-btn.copied {
+    background: var(--cyan);
+    color: var(--navy-deep);
+  }
+  .copy-btn .copy-icon { font-size: 14px; }
+
+  .copy-row-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .pay-step-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 14px 18px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    margin-top: 10px;
+  }
+  .pay-step-meta-row { display: flex; flex-direction: column; gap: 2px; }
+  .pay-step-meta-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .pay-step-meta-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: var(--cream);
+    word-break: break-all;
+  }
+  .pay-step-meta-val.amount { color: var(--gold); font-weight: 600; }
+
+  .pay-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--gold);
+    color: var(--navy-deep);
+    padding: 14px 24px;
+    border-radius: 2px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    margin-top: 6px;
+  }
+  .pay-cta:hover { background: var(--gold-light); }
+  .pay-cta .icon { font-size: 14px; }
+
+  .pay-cta.secondary {
+    background: transparent;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+  }
+  .pay-cta.secondary:hover {
+    background: var(--gold);
+    color: var(--navy-deep);
+  }
+
+  /* Sticky CTA bar */
+  .sticky-cta {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--navy-deep);
+    border-top: 1px solid var(--gold);
+    padding: 14px 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    z-index: 100;
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.4);
+  }
+
+  .sticky-cta.visible {
+    transform: translateY(0);
+  }
+
+  .sticky-cta-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex-shrink: 1;
+    min-width: 0;
+  }
+
+  .sticky-cta-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cyan);
+  }
+
+  .sticky-cta-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--gold-light);
+    line-height: 1;
+  }
+  .sticky-cta-price .old {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    text-decoration: line-through;
+    margin-right: 8px;
+    font-weight: 400;
+  }
+
+  .sticky-cta-btn {
+    background: var(--gold);
+    color: var(--navy-deep);
+    padding: 14px 22px;
+    border-radius: 2px;
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .sticky-cta-btn:hover { background: var(--gold-light); }
+
+  /* ========== FOOTER ========== */
+  .footer {
+    background: var(--navy-deep);
+    color: var(--muted);
+    padding: 40px 6vw;
+    text-align: center;
+    font-size: 13px;
+    border-top: 1px solid rgba(212, 175, 55, 0.1);
+  }
+  .footer .accent { color: var(--gold); }
+
+  /* ========== LEVEL SELECTOR ========== */
+  .levels {
+    background: var(--navy-deep);
+    color: var(--cream);
+    padding: 100px 6vw 80px;
+    position: relative;
+    border-top: 1px solid rgba(212, 175, 55, 0.12);
+  }
+
+  .levels::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(212, 175, 55, 0.08) 0%, transparent 45%),
+      radial-gradient(circle at 85% 80%, rgba(0, 229, 255, 0.06) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .levels-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .levels-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-align: center;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+  .levels-eyebrow::before,
+  .levels-eyebrow::after {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.5;
+  }
+
+  .levels-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    text-align: center;
+    color: var(--cream);
+    margin-bottom: 16px;
+  }
+  .levels-title .italic {
+    font-style: italic;
+    color: var(--gold-light);
+    font-weight: 600;
+  }
+
+  .levels-lead {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--muted);
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 64px;
+  }
+
+  .levels-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .level-card {
+    position: relative;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+    border: 1px solid rgba(212, 175, 55, 0.18);
+    border-radius: 4px;
+    padding: 40px 32px 36px;
+    text-decoration: none;
+    color: var(--cream);
+    display: flex;
+    flex-direction: column;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .level-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.08) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+
+  .level-card.active {
+    border-color: var(--gold);
+    background: linear-gradient(180deg, rgba(212, 175, 55, 0.10), rgba(212, 175, 55, 0.02));
+    transform: translateY(-4px);
+    box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(212, 175, 55, 0.4);
+  }
+
+  .level-card.active::before { opacity: 1; }
+
+  .level-card.coming-soon {
+    cursor: default;
+    opacity: 0.78;
+  }
+
+  .level-card.coming-soon:hover {
+    transform: none;
+  }
+
+  .level-card:not(.coming-soon):hover {
+    transform: translateY(-4px);
+    border-color: rgba(212, 175, 55, 0.6);
+  }
+
+  .level-card-tag {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border-radius: 2px;
+    font-weight: 500;
+  }
+
+  .level-card-tag.available {
+    background: var(--gold);
+    color: var(--navy-deep);
+  }
+
+  .level-card-tag.soon {
+    background: rgba(0, 229, 255, 0.12);
+    color: var(--cyan);
+    border: 1px solid rgba(0, 229, 255, 0.3);
+  }
+
+  .level-card-roman {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    font-weight: 400;
+  }
+
+  .level-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin-bottom: 4px;
+  }
+
+  .level-card-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--gold-light);
+    margin-bottom: 24px;
+    font-weight: 400;
+  }
+
+  .level-card-meta {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 32px;
+    flex: 1;
+  }
+
+  .level-card-meta-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.08);
+  }
+  .level-card-meta-row:last-child { border-bottom: none; }
+  .level-card-meta-row .label { color: var(--muted); }
+  .level-card-meta-row .value { color: var(--cream); font-weight: 500; }
+
+  .level-card-cta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 20px;
+    border-top: 1px solid rgba(212, 175, 55, 0.18);
+  }
+
+  .level-card.coming-soon .level-card-cta {
+    color: rgba(0, 229, 255, 0.7);
+  }
+
+  .level-card-cta-arrow {
+    font-size: 20px;
+    transition: transform 0.3s ease;
+  }
+
+  .level-card:not(.coming-soon):hover .level-card-cta-arrow {
+    transform: translateX(6px);
+  }
+
+  /* ========== COUNTDOWN ========== */
+  .countdown-section {
+    background: linear-gradient(180deg, var(--navy-deep) 0%, var(--navy) 100%);
+    color: var(--cream);
+    padding: 64px 6vw;
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid rgba(212, 175, 55, 0.18);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.18);
+  }
+
+  .countdown-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(212, 175, 55, 0.18) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .countdown-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .countdown-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .countdown-eyebrow::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: var(--cyan);
+    border-radius: 50%;
+    box-shadow: 0 0 14px var(--cyan);
+    animation: pulse 1.4s ease-in-out infinite;
+  }
+
+  .countdown-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+    color: var(--cream);
+  }
+  .countdown-title .italic {
+    font-style: italic;
+    color: var(--gold-light);
+    font-weight: 600;
+  }
+
+  .countdown-sub {
+    font-size: 15px;
+    color: var(--muted);
+    margin-bottom: 36px;
+  }
+
+  .countdown-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    max-width: 720px;
+    margin: 0 auto 32px;
+  }
+
+  .countdown-cell {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    border-radius: 4px;
+    padding: 24px 12px 18px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .countdown-cell::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.6), transparent);
+  }
+
+  .countdown-num {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(40px, 6vw, 64px);
+    font-weight: 700;
+    line-height: 1;
+    color: var(--gold-light);
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .countdown-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .countdown-price {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-top: 8px;
+    padding: 14px 28px;
+    background: rgba(212, 175, 55, 0.08);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 4px;
+  }
+
+  .countdown-price-old {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    color: var(--muted);
+    text-decoration: line-through;
+    text-decoration-color: rgba(212, 175, 55, 0.5);
+  }
+
+  .countdown-price-new {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--gold);
+  }
+
+  .countdown-price-discount {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--cyan);
+    background: rgba(0, 229, 255, 0.1);
+    padding: 4px 10px;
+    border-radius: 2px;
+  }
+
+  /* Hidden state for level-gated content */
+  .level-content-hidden {
+    display: none !important;
+  }
+
+  .level-coming-soon-screen {
+    background: var(--navy-deep);
+    color: var(--cream);
+    padding: 120px 6vw;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .level-coming-soon-screen::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 30% 40%, rgba(0, 229, 255, 0.08) 0%, transparent 55%),
+      radial-gradient(circle at 70% 60%, rgba(212, 175, 55, 0.08) 0%, transparent 55%);
+    pointer-events: none;
+  }
+  .level-coming-soon-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .level-coming-soon-tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    background: rgba(0, 229, 255, 0.1);
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    padding: 8px 16px;
+    border-radius: 2px;
+    margin-bottom: 28px;
+  }
+  .level-coming-soon-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(40px, 6vw, 72px);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+  }
+  .level-coming-soon-title .italic {
+    font-style: italic;
+    color: var(--gold-light);
+    font-weight: 600;
+  }
+  .level-coming-soon-lead {
+    font-size: 18px;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 40px;
+  }
+  .level-coming-soon-back {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: transparent;
+    border: 1px solid var(--gold);
+    padding: 14px 28px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .level-coming-soon-back:hover {
+    background: var(--gold);
+    color: var(--navy-deep);
+  }
+
+  /* ========== ANIMATIONS ========== */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes flipNum {
+    0% { transform: translateY(-8px); opacity: 0.5; }
+    100% { transform: translateY(0); opacity: 1; }
+  }
+
+  .countdown-num.tick {
+    animation: flipNum 0.4s ease-out;
+  }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 900px) {
+    .problem-grid { grid-template-columns: 1fr; gap: 48px; }
+    .topics-grid { grid-template-columns: 1fr; }
+    .proof-inner { grid-template-columns: 1fr; gap: 48px; }
+    .proof-quote { font-size: 26px; }
+    .delivery-steps { grid-template-columns: 1fr; gap: 40px; }
+    .preview-pages { grid-template-columns: 1fr; gap: 32px; }
+    .preview-page { aspect-ratio: auto; }
+    .preview-page-content { padding: 32px 28px 28px; }
+    .preview-los-hero { grid-template-columns: 1fr; gap: 16px; }
+    .preview-body { grid-template-columns: 1fr; gap: 24px; }
+    .preview-calc-grid { grid-template-columns: 1fr; }
+    .preview-calc-cell:first-child { border-right: none; border-bottom: 1px solid rgba(10, 31, 68, 0.12); }
+    .preview-main-title { font-size: 32px; }
+    .preview-aha { padding: 24px 24px; }
+    .preview-aha-text { font-size: 18px; }
+    .section { padding: 80px 6vw; }
+    .pricing-card { padding: 36px 24px; }
+    .pricing-compare { grid-template-columns: 1fr; gap: 20px; }
+    .pricing-compare-price { font-size: 36px; }
+    .pricing-compare-title { font-size: 24px; }
+    .purchase-tabs { grid-template-columns: 1fr; gap: 10px; }
+    .purchase-total { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .purchase-total-savings { text-align: left; }
+    .qty-selector { flex-direction: column; gap: 14px; align-items: flex-start; }
+    .hero-meta { gap: 32px; }
+    .levels-grid { grid-template-columns: 1fr; gap: 16px; }
+    .countdown-grid { gap: 8px; }
+    .countdown-cell { padding: 18px 8px 14px; }
+    .countdown-price { flex-wrap: wrap; justify-content: center; gap: 10px; padding: 12px 18px; }
+    .free-preview-grid { grid-template-columns: 1fr; gap: 16px; }
+    .free-preview-card { padding: 32px 24px; }
+    .pay-step { padding: 24px 20px 20px 20px; }
+    .pay-step-num { position: relative; top: 0; left: 0; margin-bottom: 16px; }
+    .pay-step-meta { grid-template-columns: 1fr; gap: 10px; }
+    .copy-row-grid { grid-template-columns: 1fr; }
+    .sticky-cta { padding: 12px 4vw; gap: 12px; }
+    .sticky-cta-price { font-size: 18px; }
+    .sticky-cta-price .old { display: none; }
+    .sticky-cta-btn { padding: 12px 16px; font-size: 11px; }
+  }
+
+  @media (max-width: 540px) {
+    .hero h1 { font-size: 42px; }
+    .pricing-total .value { font-size: 40px; }
+    .nav-meta { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <nav class="nav">
+    <div class="logo">CFA<span class="accent"> · Mongolia</span></div>
+    <div class="nav-meta">Бэлэн · 2026.05</div>
+  </nav>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">CFA Level I</div>
+    <h1>
+      Монгол хэл дээр<br>
+      <span class="italic">CFA-ийн ном</span><br>
+      <span class="underline">анх удаа бий боллоо.</span>
+    </h1>
+    <p class="hero-lead">
+      Бидний зүгээс CFA шалгалтанд бэлдэж буй Монгол ахан дүүсдээ зориулан CFA-ийн бүрэн номыг монгол хэл дээрээ бэлдэж, таны гар дээр хүргэхэд бэлэн боллоо.
+    </p>
+    <div class="hero-cta-row">
+      <a href="#free-preview" class="btn-primary">↓ Үнэгүй татаж үзэх</a>
+      <a href="#payment" class="btn-ghost">190,000₮-ээр захиалах →</a>
+    </div>
+
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        Багтсан
+        <strong>10 <span class="accent">сэдэв</span></strong>
+      </div>
+      <div class="hero-meta-item">
+        Нийт агуулга
+        <strong>1000+ <span class="accent">хуудас</span></strong>
+      </div>
+      <div class="hero-meta-item">
+        Танд очих
+        <strong>48 <span class="accent">цагт</span></strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEVEL SELECTOR -->
+<section class="levels" id="levels">
+  <div class="levels-inner">
+    <div class="levels-eyebrow">Хувилбараа сонгоно уу</div>
+    <h2 class="levels-title">
+      Аль шатанд<br>
+      <span class="italic">бэлдэж байна вэ?</span>
+    </h2>
+    <p class="levels-lead">
+      Level I анх удаа Монгол хэл дээр. Level II, III тун удахгүй.
+    </p>
+
+    <div class="levels-grid">
+      <!-- LEVEL I -->
+      <a class="level-card active" data-level="1" onclick="selectLevel(1, event)">
+        <span class="level-card-tag available">Бэлэн</span>
+        <div class="level-card-roman">Level · I</div>
+        <div class="level-card-title">Level I</div>
+        <div class="level-card-subtitle">Foundation</div>
+        <div class="level-card-meta">
+          <div class="level-card-meta-row">
+            <span class="label">Сэдэв</span>
+            <span class="value">10</span>
+          </div>
+          <div class="level-card-meta-row">
+            <span class="label">Хуудас</span>
+            <span class="value">1000+</span>
+          </div>
+          <div class="level-card-meta-row">
+            <span class="label">Хэл</span>
+            <span class="value">Монгол</span>
+          </div>
+        </div>
+        <div class="level-card-cta">
+          <span>Номыг үзэх</span>
+          <span class="level-card-cta-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- LEVEL II -->
+      <a class="level-card coming-soon" data-level="2" onclick="selectLevel(2, event)">
+        <span class="level-card-tag soon">Тун удахгүй</span>
+        <div class="level-card-roman">Level · II</div>
+        <div class="level-card-title">Level II</div>
+        <div class="level-card-subtitle">Application</div>
+        <div class="level-card-meta">
+          <div class="level-card-meta-row">
+            <span class="label">Сэдэв</span>
+            <span class="value">10</span>
+          </div>
+          <div class="level-card-meta-row">
+            <span class="label">Хуудас</span>
+            <span class="value">~1200</span>
+          </div>
+          <div class="level-card-meta-row">
+            <span class="label">Гарах огноо</span>
+            <span class="value">2026.06</span>
+          </div>
+        </div>
+        <div class="level-card-cta">
+          <span>Тун удахгүй</span>
+          <span class="level-card-cta-arrow">◷</span>
+        </div>
+      </a>
+
+      <!-- LEVEL III -->
+      <a class="level-card coming-soon" data-level="3" onclick="selectLevel(3, event)">
+        <span class="level-card-tag soon">Тун удахгүй</span>
+        <div class="level-card-roman">Level · III</div>
+        <div class="level-card-title">Level III</div>
+        <div class="level-card-subtitle">Mastery</div>
+        <div class="level-card-meta">
+          <div class="level-card-meta-row">
+            <span class="label">Сэдэв</span>
+            <span class="value">8</span>
+          </div>
+          <div class="level-card-meta-row">
+            <span class="label">Хуудас</span>
+            <span class="value">~1100</span>
+          </div>
+          <div class="level-card-meta-row">
+            <span class="label">Гарах огноо</span>
+            <span class="value">2026.09</span>
+          </div>
+        </div>
+        <div class="level-card-cta">
+          <span>Тун удахгүй</span>
+          <span class="level-card-cta-arrow">◷</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- COUNTDOWN — only shows for Level I -->
+<section class="countdown-section" id="countdown" data-level-content="1">
+  <div class="countdown-inner">
+    <div class="countdown-eyebrow">Хязгаартай хямдрал</div>
+    <h2 class="countdown-title">
+      Хямдрал <span class="italic">тун удахгүй дуусна.</span>
+    </h2>
+    <p class="countdown-sub">2026.05.24 · 09:00 хүртэл</p>
+
+    <div class="countdown-grid">
+      <div class="countdown-cell">
+        <span class="countdown-num" id="cd-days">05</span>
+        <span class="countdown-label">Өдөр</span>
+      </div>
+      <div class="countdown-cell">
+        <span class="countdown-num" id="cd-hours">00</span>
+        <span class="countdown-label">Цаг</span>
+      </div>
+      <div class="countdown-cell">
+        <span class="countdown-num" id="cd-minutes">00</span>
+        <span class="countdown-label">Минут</span>
+      </div>
+      <div class="countdown-cell">
+        <span class="countdown-num" id="cd-seconds">00</span>
+        <span class="countdown-label">Секунд</span>
+      </div>
+    </div>
+
+    <div class="countdown-price">
+      <span class="countdown-price-old">290,000₮</span>
+      <span class="countdown-price-new">190,000₮</span>
+      <span class="countdown-price-discount">−35%</span>
+    </div>
+  </div>
+</section>
+
+<!-- LEVEL II/III COMING SOON SCREEN (hidden by default) -->
+<section class="level-coming-soon-screen level-content-hidden" id="coming-soon-screen">
+  <div class="level-coming-soon-inner">
+    <span class="level-coming-soon-tag" id="cs-tag">Level II</span>
+    <h2 class="level-coming-soon-title">
+      <span id="cs-level-name">Level II</span><br>
+      <span class="italic">тун удахгүй.</span>
+    </h2>
+    <p class="level-coming-soon-lead" id="cs-lead">
+      Level II-ийн ном Монгол хэл дээр 2026 оны 6-р сард гарна. Бүртгүүлсэн хүмүүст хамгийн түрүүнд мэдэгдэх болно.
+    </p>
+    <button class="level-coming-soon-back" onclick="selectLevel(1, null)">← Level I-рүү буцах</button>
+  </div>
+</section>
+
+<!-- LEVEL I CONTENT WRAPPER START -->
+<div id="level-1-content">
+
+<!-- FREE PREVIEW — moved up for early trust-building -->
+<section class="free-preview" id="free-preview">
+  <div class="free-preview-inner">
+    <div class="free-preview-eyebrow">Үнэгүй үзэх · Туршаад үзээрэй</div>
+    <h2 class="free-preview-title">
+      Худалдан авахаасаа өмнө<br>
+      <span class="italic">2 module-ыг үнэгүй татаарай.</span>
+    </h2>
+    <p class="free-preview-lead">
+      Чанар, агуулга, хэлбэрийг өөрийн нүдээр харж шийдвэрээ гаргаарай. Имэйл оруулах, бүртгүүлэх шаардлагагүй — шууд татаж аваарай.
+    </p>
+
+    <div class="free-preview-grid">
+      <!-- LM6 -->
+      <div class="free-preview-card">
+        <span class="free-preview-card-tag">Volume 6 · LM6</span>
+        <div class="free-preview-card-eyebrow">Fixed Income</div>
+        <div class="free-preview-card-title">Бондын үнэлгээ</div>
+        <div class="free-preview-card-subtitle">Үнэ ба өгөөж</div>
+        <div class="free-preview-card-meta">
+          <div class="free-preview-card-meta-item">
+            <div class="free-preview-card-meta-num">3</div>
+            <div class="free-preview-card-meta-label">LOS</div>
+          </div>
+          <div class="free-preview-card-meta-item">
+            <div class="free-preview-card-meta-num">12</div>
+            <div class="free-preview-card-meta-label">Жишээ</div>
+          </div>
+          <div class="free-preview-card-meta-item">
+            <div class="free-preview-card-meta-num">37</div>
+            <div class="free-preview-card-meta-label">Хуудас</div>
+          </div>
+        </div>
+        <p class="free-preview-card-desc">
+          DCF, YTM, flat/full price, 30/360 vs actual/actual, pull-to-par, convexity, matrix pricing — бүх дасгалтай.
+        </p>
+        <a href="free-preview/cfa-2026-lm6-fixed-income-bond-valuation-mongol.pdf" download class="free-preview-card-cta">
+          <span class="free-preview-card-cta-icon">↓</span>
+          <span>PDF татах</span>
+        </a>
+      </div>
+
+      <!-- LM10 -->
+      <div class="free-preview-card">
+        <span class="free-preview-card-tag">Volume 1 · LM10</span>
+        <div class="free-preview-card-eyebrow">Quantitative Methods</div>
+        <div class="free-preview-card-title">Энгийн шугаман регресс</div>
+        <div class="free-preview-card-subtitle">Simple Linear Regression</div>
+        <div class="free-preview-card-meta">
+          <div class="free-preview-card-meta-item">
+            <div class="free-preview-card-meta-num">6</div>
+            <div class="free-preview-card-meta-label">LOS</div>
+          </div>
+          <div class="free-preview-card-meta-item">
+            <div class="free-preview-card-meta-num">18</div>
+            <div class="free-preview-card-meta-label">Жишээ</div>
+          </div>
+          <div class="free-preview-card-meta-item">
+            <div class="free-preview-card-meta-num">43</div>
+            <div class="free-preview-card-meta-label">Хуудас</div>
+          </div>
+        </div>
+        <p class="free-preview-card-desc">
+          OLS, R², F-test, ANOVA, prediction interval, log-lin/lin-log/log-log хэлбэрүүд — бүх дасгал шийдэлтэйгээр.
+        </p>
+        <a href="free-preview/cfa-2026-lm10-simple-linear-regression-mongol.pdf" download class="free-preview-card-cta">
+          <span class="free-preview-card-cta-icon">↓</span>
+          <span>PDF татах</span>
+        </a>
+      </div>
+    </div>
+
+    <p class="free-preview-note">
+      Хэрэв танд таалагдвал <span class="accent">бүх 10 сэдвийг 35% хямдралтай</span> авах боломжтой.
+    </p>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="section problem">
+  <div class="section-eyebrow">Яагаад одоо</div>
+  <h2 class="section-title">Монгол хэл дээр<br>CFA-ийн ном <span class="italic">байгаагүй.</span></h2>
+  <p class="section-lead">
+    CFA-ийн curriculum 3000 гаруй хуудас, мэргэжлийн англи хэлээр бичигдсэн. Эх хэлээрээ ойлгож, тогтоох сонголт өнөөг хүртэл байсангүй. Ийнхүү CFA шалгалтаа амжилттай давж цол эзэмшсэн мэргэжилтнүүд бид та бүгдэдээ эх хэл дээрээ суралцах боломжийг нээж байна.
+  </p>
+
+  <div class="problem-grid">
+    <div>
+      <div class="problem-quote">
+        Эх хэл дээрээ болон<br>
+        англи хэл дээр<br>
+        хослуулан сурах нь<br>
+        ой тогтоолт, сурах<br>
+        <span class="italic">үйл явцыг 2-3 дахин</span><br>
+        хурдасгадаг.
+      </div>
+      <div class="problem-quote-attribution">— Сурах үр дүнтэй арга</div>
+    </div>
+
+    <div class="problem-detail">
+      <h3>Энэ нь зөвхөн орчуулга биш.</h3>
+      <p>
+        CFA-ийн curriculum техникийн өндөр түвшний англи хэлээр бичигдсэн. <strong>Discounting</strong>, <strong>duration</strong>, <strong>covariance</strong>, <strong>amortization</strong> — эдгээрийг шууд орчуулах нь утгыг гажуудуулдаг.
+      </p>
+      <p>
+        Манай ном <strong>эх хэлний логикоор</strong> бичигдсэн, гэхдээ техникийн нэр томъёог англиар хадгалсан. Энэ нь танд хоёр давуу талыг өгдөг — англи curriculum-аа уншихдаа ойлголт нь тогтсон, шалгалт өгөхдөө ч англи хэллэг танил байна.
+      </p>
+      <p>
+        10 сэдэв бүхэлдээ ийм зарчмаар бичигдсэн.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- PROOF -->
+<section class="proof">
+  <div class="proof-inner">
+    <div>
+      <div class="section-eyebrow">Яагаад энэ ном вэ</div>
+      <div class="proof-quote">
+        "Энэхүү ном нь<br>
+        энгийн үгээр<br>
+        <span class="italic">ойлгомжтой</span><br>
+        бичигдсэн."
+      </div>
+    </div>
+    <div class="proof-detail">
+      <h3>Англи хэл саад болохгүй.</h3>
+      <p>
+        CFA-ийн англи curriculum нь нягтаршилтай, мэргэжлийн нэр томъёоор дүүрэн. Манай ном <strong>энгийн үгээр ойлгомжтой</strong> бичигдсэн — гэхдээ техникийн нэр томъёог англиар хадгалж шалгалтанд бэлтгэлд саад үүсгэхгүй.
+      </p>
+      <p>
+        Concept нь эх хэлээр тогтоно, англи хэллэг нь танил болно — энэ хослол нь <strong>ой тогтоох хурдыг 2-3 дахин нэмэгдүүлдэг</strong>.
+      </p>
+      <p>
+        Ном таны гар дээр очсоноос хойш 7 хоногийн дотор сэтгэл хангалуун бус байвал бүрэн буцаалт авна.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- DELIVERY -->
+<section class="delivery">
+  <div class="delivery-inner">
+    <div class="section-eyebrow" style="justify-content: center;">Хэрхэн ажиллах вэ</div>
+    <h2 class="section-title" style="margin: 0 auto 16px; text-align: center;">3 алхам. <span class="italic">24 цаг.</span></h2>
+
+    <div class="delivery-steps">
+      <div class="step">
+        <div class="step-num">i.</div>
+        <div class="step-title">Төлбөр хийх</div>
+        <div class="step-desc">Дансанд 190,000₮ шилжүүлж, гүйлгээний баримтыг имэйлээр илгээнэ.</div>
+        <div class="step-time">~ 2 минут</div>
+      </div>
+      <div class="step">
+        <div class="step-num">ii.</div>
+        <div class="step-title">Баталгаажуулалт</div>
+        <div class="step-desc">Гүйлгээ хүлээн авмагц танд имэйлээр баталгаажуулалт явна.</div>
+        <div class="step-time">~ 24 цаг</div>
+      </div>
+      <div class="step">
+        <div class="step-num">iii.</div>
+        <div class="step-title">Ном хүлээн авах</div>
+        <div class="step-desc">10 сэдэв, 1000 гаруй хуудас, нэг PDF файлаар инбокст ирнэ.</div>
+        <div class="step-time">Зэрэг</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- GUARANTEE -->
+<section class="guarantee">
+  <div class="guarantee-inner">
+    <div class="guarantee-icon">⚜</div>
+    <h3>7 хоногийн <span class="italic">буцаалтын баталгаа.</span></h3>
+    <p>
+      Ном таны гар дээр очсоноос хойш 7 хоногийн дотор та чанарын талаар сэтгэл хангалуун бус байвал бүрэн буцаалт авна. Үүгээрээ бид танд <strong>100%-ийн баталгаа</strong> өгч байна.
+    </p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="faq-inner">
+    <div class="section-eyebrow" style="justify-content: center;">Түгээмэл асуулт</div>
+    <h2 class="section-title" style="text-align: center; margin: 0 auto 56px;">Асуултууд.</h2>
+
+    <details class="faq-item">
+      <summary class="faq-q">Хэзээ хүлээн авах вэ?</summary>
+      <div class="faq-a">Гүйлгээний баримт хүлээн авмагц 24 цагийн дотор танд имэйлээр PDF илгээгдэнэ. 10 сэдэв нэг файлд багтсан.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-q">Зөвхөн нэг сэдвийг авч болох уу?</summary>
+      <div class="faq-a">
+        Болно. <strong>Нэг сэдвийг тусад нь 29,000₮.</strong> Гэхдээ бүгдийг нэг дор авах нь хамаагүй ашигтай:
+        <div class="faq-pricing-table">
+          <div class="faq-pricing-row">
+            <span>10 сэдэв тус тусад нь</span>
+            <span>10 × 29,000 = 290,000₮</span>
+          </div>
+          <div class="faq-pricing-row">
+            <span>10 сэдэв нэг дор</span>
+            <span>190,000₮</span>
+          </div>
+          <div class="faq-pricing-row">
+            <span>Хэмнэлт</span>
+            <span class="savings">100,000₮ · −35%</span>
+          </div>
+        </div>
+        Аль сэдвийг авахаа шийдсэн бол надтай шууд холбогдоорой.
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-q">PDF үү, хэвлэмэл үү?</summary>
+      <div class="faq-a">PDF хэлбэрээр илгээгдэнэ — таблет, утас, компьютерт уншигдана. Print хийх эрхтэй (нэг хүний хэрэглээ). Хэвлэмэл хувилбар одоогоор санал болгоогүй.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-q">Энэ англи curriculum-ыг орлох уу?</summary>
+      <div class="faq-a">Үгүй. CFA Institute-ийн оригинал curriculum-ыг суралцагч заавал унших ёстой. Энэ ном бол <strong>хамтран ашиглах туслах материал</strong> — англиар уншиж буй сэдвийг эх хэлээрээ ойлгож, тогтоох зорилготой.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-q">Үнэ ирээдүйд өөрчлөгдөх үү?</summary>
+      <div class="faq-a">Бид одоохондоо энэхүү танилцуулгын үнээр санал болгож байна. Ном үргэлжилсэн шинэчлэгдэх, нэмэлт материал орох тутам үнэ цэн нэмэгдэх учир ирээдүйд үнэ өөрчлөгдөж болзошгүй. Одоо авбал одоогийн үнээр баталгаатай.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-q">Level II, III-ийн ном хэзээ гарах вэ?</summary>
+      <div class="faq-a">Level III-ийн материалын ажил аль хэдийн эхэлсэн — энэ нь манай гол урт хугацааны бүтээгдэхүүн. Level I худалдан авсан хүмүүс Level II ба III гарахад хамгийн түрүүнд мэдэх ба тусгай үнэ авах боломжтой.</div>
+    </details>
+
+    <details class="faq-item">
+      <summary class="faq-q">Надад таалагдахгүй бол яах вэ?</summary>
+      <div class="faq-a">7 хоногийн дотор бүрэн буцаалт авах эрхтэй. Ямар нэг асуудал гарвал шууд надтай холбогдоорой — шуурхай шийднэ.</div>
+    </details>
+  </div>
+</section>
+
+<!-- PAYMENT — 3 STEP STEPPER -->
+<section class="checkout" id="payment">
+  <div class="checkout-inner">
+    <div class="section-eyebrow" style="justify-content: center; color: var(--gold);">Худалдаж авах</div>
+    <h2>Бүгдийг нэг дор авбал <span class="italic">35% хямдарна.</span><br>3 алхамаар номоо аваарай.</h2>
+    <p class="checkout-lead">
+      Хэрхэн авахаа сонгож, дансанд шилжүүлэг хийгээд гүйлгээний баримтыг имэйлээр илгээгээрэй. 24 цагийн дотор танд PDF имэйлдэгдэнэ.
+    </p>
+
+    <!-- Purchase options -->
+    <div class="purchase-options">
+      <div class="purchase-options-label">Хэрхэн авах вэ</div>
+
+      <div class="purchase-tabs">
+        <div class="purchase-tab" data-option="single">
+          <div class="purchase-tab-title">Нэг сэдвээр</div>
+          <div class="purchase-tab-sub">29,000₮</div>
+        </div>
+        <div class="purchase-tab" data-option="bundle">
+          <div class="purchase-tab-title">Олноор</div>
+          <div class="purchase-tab-sub">2–9 сэдэв</div>
+        </div>
+        <div class="purchase-tab active" data-option="all">
+          <div class="purchase-tab-title">Бүгд</div>
+          <div class="purchase-tab-sub">10 сэдэв · −35%</div>
+        </div>
+      </div>
+
+      <div class="qty-selector" id="qtySelector">
+        <div class="qty-selector-label">Хэдэн сэдэв авах вэ?</div>
+        <div class="qty-controls">
+          <button class="qty-btn" id="qtyMinus" aria-label="Хасах">−</button>
+          <div class="qty-value" id="qtyValue">3</div>
+          <button class="qty-btn" id="qtyPlus" aria-label="Нэмэх">+</button>
+        </div>
+      </div>
+
+      <div class="purchase-total">
+        <div>
+          <span class="purchase-total-label" id="totalLabel">Бүх 10 сэдэв</span>
+          <span class="purchase-total-formula" id="totalFormula">10 сэдэв нэг дор</span>
+        </div>
+        <div>
+          <div class="purchase-total-amount" id="totalAmount">190,000<span class="currency">₮</span></div>
+          <span class="purchase-total-savings" id="totalSavings">100,000₮ хэмнэлт · −35%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3-STEP PAYMENT STEPPER -->
+    <div class="payment-steps">
+
+      <!-- STEP 1: Copy account info -->
+      <div class="pay-step">
+        <div class="pay-step-num">1</div>
+        <div class="pay-step-eyebrow">Алхам нэг</div>
+        <div class="pay-step-title">Дансны мэдээллийг хуулна</div>
+        <div class="pay-step-desc">
+          Доорх товчийг дарвал данс эсвэл гүйлгээний утга clipboard-д хадгалагдана. Хаан банк, эзэмшигч: <strong style="color: var(--cream);">Баасанхүү Дашдулам</strong>.
+        </div>
+
+        <div class="copy-row-grid">
+          <div class="copy-field">
+            <div class="copy-field-label">Дансны дугаар</div>
+            <div class="copy-field-value-wrap">
+              <span class="copy-field-value">5005360118256</span>
+              <button class="copy-btn" data-copy="5005360118256" type="button">
+                <span class="copy-icon">⎘</span><span class="copy-text">Хуулах</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="copy-field">
+            <div class="copy-field-label">Гүйлгээний утга</div>
+            <div class="copy-field-value-wrap">
+              <span class="copy-field-value" id="copyPurpose">CFA монгол ном · бүгд · нэр + имэйл</span>
+              <button class="copy-btn" data-copy-target="copyPurpose" type="button">
+                <span class="copy-icon">⎘</span><span class="copy-text">Хуулах</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="pay-step-meta">
+          <div class="pay-step-meta-row">
+            <span class="pay-step-meta-label">Дүн шилжүүлэх</span>
+            <span class="pay-step-meta-val amount" id="bankAmount">190,000₮</span>
+          </div>
+          <div class="pay-step-meta-row">
+            <span class="pay-step-meta-label">IBAN format</span>
+            <span class="pay-step-meta-val">MN160005005360118256</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 2: Transfer via banking app -->
+      <div class="pay-step">
+        <div class="pay-step-num">2</div>
+        <div class="pay-step-eyebrow">Алхам хоёр</div>
+        <div class="pay-step-title">Банкны аппаар шилжүүлнэ</div>
+        <div class="pay-step-desc">
+          Хаан банкны эсвэл бусад банкны аппаар <strong style="color: var(--gold);" id="transferAmount">190,000₮</strong>-ийг шилжүүлнэ. Гүйлгээний утганд <strong style="color: var(--cream);">нэр + имэйл хаягаа</strong> заавал бичээрэй — баримтыг таниулахад хэрэгтэй.
+        </div>
+      </div>
+
+      <!-- STEP 3: Send receipt via email -->
+      <div class="pay-step">
+        <div class="pay-step-num">3</div>
+        <div class="pay-step-eyebrow">Алхам гурав</div>
+        <div class="pay-step-title">Гүйлгээний баримтыг илгээнэ</div>
+        <div class="pay-step-desc">
+          Гүйлгээний баримтын screenshot-ыг авч <strong style="color: var(--gold);">info@cfa-mongolia.com</strong> хаяг руу илгээгээрэй. Subject хэсэгт нэр болон авч буй сэдвээ бичээрэй. <strong style="color: var(--cream);">24 цагийн дотор</strong> танд PDF буцаж имэйлдэгдэнэ.
+        </div>
+        <a href="mailto:info@cfa-mongolia.com?subject=CFA%20Level%20I%20-%20Гүйлгээний%20баримт&body=Сайн%20байна%20уу%2C%0A%0AГүйлгээний%20баримтыг%20хавсаргалаа.%0A%0AНэр%3A%20%0AАвч%20буй%20сэдэв%3A%20%0A%0AБаярлалаа." class="pay-cta">
+          <span class="icon">✉</span>
+          <span>Имэйл нээх</span>
+        </a>
+      </div>
+
+    </div>
+
+    <p class="bank-note">
+      Асуудал гарвал info@cfa-mongolia.com хаяг руу шууд бичих эсвэл facebook page-ээр холбогдоорой. Олноор эсвэл нэг сэдвээр авч байгаа бол гүйлгээний утганд аль сэдвүүдийг авч буйгаа бичээрэй.
+    </p>
+  </div>
+</section>
+
+<!-- STICKY MOBILE CTA -->
+<div class="sticky-cta" id="stickyCta">
+  <div class="sticky-cta-info">
+    <span class="sticky-cta-label" id="stickyCtaLabel">Бүх 10 сэдэв · −35%</span>
+    <span class="sticky-cta-price">
+      <span class="old">290,000₮</span>
+      <span id="stickyCtaPrice">190,000₮</span>
+    </span>
+  </div>
+  <a href="#payment" class="sticky-cta-btn">Захиалах →</a>
+</div>
+
+<!-- Purchase selector script -->
+<script>
+(function() {
+  var tabs = document.querySelectorAll('.purchase-tab');
+  var qtySelector = document.getElementById('qtySelector');
+  var qtyValue = document.getElementById('qtyValue');
+  var qtyMinus = document.getElementById('qtyMinus');
+  var qtyPlus = document.getElementById('qtyPlus');
+  var totalLabel = document.getElementById('totalLabel');
+  var totalFormula = document.getElementById('totalFormula');
+  var totalAmount = document.getElementById('totalAmount');
+  var totalSavings = document.getElementById('totalSavings');
+  var bankAmount = document.getElementById('bankAmount');
+  var bankPurpose = document.getElementById('copyPurpose');
+  var transferAmount = document.getElementById('transferAmount');
+  var stickyCtaPrice = document.getElementById('stickyCtaPrice');
+  var stickyCtaLabel = document.getElementById('stickyCtaLabel');
+
+  var UNIT_PRICE = 29000;
+  var ALL_PRICE = 190000;
+  var FULL_PRICE = 290000;
+
+  var state = { option: 'all', qty: 3 };
+
+  function formatNumber(n) {
+    return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
+
+  function render() {
+    var amount = 0, label = '', formula = '', savings = '', purpose = '';
+
+    if (state.option === 'single') {
+      amount = UNIT_PRICE;
+      label = 'Нэг сэдэв';
+      formula = '1 × 29,000₮';
+      savings = '';
+      purpose = 'CFA монгол ном · 1 сэдэв · нэр + имэйл';
+    } else if (state.option === 'bundle') {
+      amount = UNIT_PRICE * state.qty;
+      label = state.qty + ' сэдэв';
+      formula = state.qty + ' × 29,000₮';
+      savings = '';
+      purpose = 'CFA монгол ном · ' + state.qty + ' сэдэв · нэр + имэйл';
+    } else {
+      amount = ALL_PRICE;
+      label = 'Бүх 10 сэдэв';
+      formula = '10 сэдэв нэг дор';
+      savings = (FULL_PRICE - ALL_PRICE).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '₮ хэмнэлт · −35%';
+      purpose = 'CFA монгол ном · бүгд · нэр + имэйл';
+    }
+
+    totalLabel.textContent = label;
+    totalFormula.textContent = formula;
+    totalAmount.innerHTML = formatNumber(amount) + '<span class="currency">₮</span>';
+    totalSavings.textContent = savings;
+    totalSavings.style.display = savings ? 'block' : 'none';
+    bankAmount.textContent = formatNumber(amount) + '₮';
+    bankPurpose.textContent = purpose;
+    if (transferAmount) transferAmount.textContent = formatNumber(amount) + '₮';
+    if (stickyCtaPrice) stickyCtaPrice.textContent = formatNumber(amount) + '₮';
+    if (stickyCtaLabel) {
+      var stickyLabel;
+      if (state.option === 'single') stickyLabel = '1 сэдэв';
+      else if (state.option === 'bundle') stickyLabel = state.qty + ' сэдэв';
+      else stickyLabel = 'Бүх 10 сэдэв · −35%';
+      stickyCtaLabel.textContent = stickyLabel;
+    }
+  }
+
+  tabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      tabs.forEach(function(t) { t.classList.remove('active'); });
+      tab.classList.add('active');
+      state.option = tab.dataset.option;
+
+      if (state.option === 'bundle') {
+        qtySelector.classList.add('visible');
+      } else {
+        qtySelector.classList.remove('visible');
+      }
+      render();
+    });
+  });
+
+  qtyMinus.addEventListener('click', function() {
+    if (state.qty > 2) { state.qty--; qtyValue.textContent = state.qty; render(); }
+    qtyMinus.disabled = state.qty <= 2;
+    qtyPlus.disabled = false;
+  });
+
+  qtyPlus.addEventListener('click', function() {
+    if (state.qty < 9) { state.qty++; qtyValue.textContent = state.qty; render(); }
+    qtyPlus.disabled = state.qty >= 9;
+    qtyMinus.disabled = false;
+  });
+
+  render();
+})();
+</script>
+
+</div>
+<!-- LEVEL I CONTENT WRAPPER END -->
+
+<!-- COPY TO CLIPBOARD + STICKY CTA -->
+<script>
+(function() {
+  // ============= COPY TO CLIPBOARD =============
+  function fallbackCopy(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    try { document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+
+  function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text).catch(function() { fallbackCopy(text); });
+    } else {
+      fallbackCopy(text);
+      return Promise.resolve();
+    }
+  }
+
+  document.querySelectorAll('.copy-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var text;
+      if (btn.dataset.copyTarget) {
+        var el = document.getElementById(btn.dataset.copyTarget);
+        text = el ? el.textContent.trim() : '';
+      } else {
+        text = btn.dataset.copy || '';
+      }
+      if (!text) return;
+
+      copyText(text);
+
+      var textEl = btn.querySelector('.copy-text');
+      var iconEl = btn.querySelector('.copy-icon');
+      var origText = textEl ? textEl.textContent : '';
+      var origIcon = iconEl ? iconEl.textContent : '';
+
+      btn.classList.add('copied');
+      if (textEl) textEl.textContent = 'Хууллаа';
+      if (iconEl) iconEl.textContent = '✓';
+
+      setTimeout(function() {
+        btn.classList.remove('copied');
+        if (textEl) textEl.textContent = origText;
+        if (iconEl) iconEl.textContent = origIcon;
+      }, 1800);
+    });
+  });
+
+  // ============= STICKY CTA =============
+  var stickyCta = document.getElementById('stickyCta');
+  if (!stickyCta) return;
+
+  var hero = document.querySelector('.hero');
+  var paymentSection = document.getElementById('payment');
+
+  function updateStickyVisibility() {
+    if (!hero) return;
+    var heroBottom = hero.getBoundingClientRect().bottom;
+    var paymentTop = paymentSection ? paymentSection.getBoundingClientRect().top : 99999;
+    var viewportH = window.innerHeight;
+
+    // Show after hero is scrolled past, hide once payment section is in view
+    var shouldShow = heroBottom < 0 && paymentTop > viewportH * 0.4;
+
+    if (shouldShow) {
+      stickyCta.classList.add('visible');
+    } else {
+      stickyCta.classList.remove('visible');
+    }
+  }
+
+  window.addEventListener('scroll', updateStickyVisibility, { passive: true });
+  window.addEventListener('resize', updateStickyVisibility);
+  updateStickyVisibility();
+})();
+</script>
+
+<!-- LEVEL SELECTOR + COUNTDOWN SCRIPT -->
+<script>
+  function selectLevel(level, evt) {
+    if (evt) evt.preventDefault();
+
+    // Update active state on cards
+    document.querySelectorAll('.level-card').forEach(card => {
+      card.classList.remove('active');
+    });
+    const clickedCard = document.querySelector('.level-card[data-level="' + level + '"]');
+    if (clickedCard) clickedCard.classList.add('active');
+
+    const levelOneContent = document.getElementById('level-1-content');
+    const countdown = document.getElementById('countdown');
+    const comingSoonScreen = document.getElementById('coming-soon-screen');
+
+    if (level === 1) {
+      // Show all Level I content
+      if (levelOneContent) levelOneContent.classList.remove('level-content-hidden');
+      if (countdown) countdown.classList.remove('level-content-hidden');
+      if (comingSoonScreen) comingSoonScreen.classList.add('level-content-hidden');
+      // Scroll to next section
+      setTimeout(() => {
+        document.querySelector('.problem')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 80);
+    } else {
+      // Hide Level I content + countdown, show coming-soon screen
+      if (levelOneContent) levelOneContent.classList.add('level-content-hidden');
+      if (countdown) countdown.classList.add('level-content-hidden');
+      if (comingSoonScreen) comingSoonScreen.classList.remove('level-content-hidden');
+
+      const tag = document.getElementById('cs-tag');
+      const name = document.getElementById('cs-level-name');
+      const lead = document.getElementById('cs-lead');
+
+      if (level === 2) {
+        if (tag) tag.textContent = 'Level II';
+        if (name) name.textContent = 'Level II';
+        if (lead) lead.textContent = 'Level II-ийн ном Монгол хэл дээр 2026 оны 6-р сард гарна. Бүртгүүлсэн хүмүүст хамгийн түрүүнд мэдэгдэх болно.';
+      } else if (level === 3) {
+        if (tag) tag.textContent = 'Level III';
+        if (name) name.textContent = 'Level III';
+        if (lead) lead.textContent = 'Level III-ийн ном Монгол хэл дээр 2026 оны 9-р сард гарна. Бүртгүүлсэн хүмүүст хамгийн түрүүнд мэдэгдэх болно.';
+      }
+
+      setTimeout(() => {
+        comingSoonScreen?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 80);
+    }
+  }
+
+  // ============= COUNTDOWN TIMER =============
+  // Fixed deadline: 2026-05-24 09:00 Улаанбаатарын цагаар (UTC+8)
+  (function() {
+    // 09:00 UB time = 01:00 UTC (UB is UTC+8)
+    var deadline = Date.UTC(2026, 4, 24, 1, 0, 0); // month is 0-indexed (4 = May)
+
+    var dEl = document.getElementById('cd-days');
+    var hEl = document.getElementById('cd-hours');
+    var mEl = document.getElementById('cd-minutes');
+    var sEl = document.getElementById('cd-seconds');
+
+    function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+    function setVal(el, val) {
+      if (!el) return;
+      var newVal = pad(val);
+      if (el.textContent !== newVal) {
+        el.textContent = newVal;
+        el.classList.remove('tick');
+        void el.offsetWidth;
+        el.classList.add('tick');
+      }
+    }
+
+    function tick() {
+      var now = Date.now();
+      var diff = Math.max(0, deadline - now);
+
+      var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      diff -= days * 1000 * 60 * 60 * 24;
+      var hours = Math.floor(diff / (1000 * 60 * 60));
+      diff -= hours * 1000 * 60 * 60;
+      var minutes = Math.floor(diff / (1000 * 60));
+      diff -= minutes * 1000 * 60;
+      var seconds = Math.floor(diff / 1000);
+
+      setVal(dEl, days);
+      setVal(hEl, hours);
+      setVal(mEl, minutes);
+      setVal(sEl, seconds);
+    }
+
+    tick();
+    setInterval(tick, 1000);
+  })();
+</script>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>CFA <span class="accent">·</span> Mongolia · Монгол хэл дээр анх удаа · 2026</p>
+</footer>
+
+</body>
+</html>
